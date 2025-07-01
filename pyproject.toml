@@ -1,6 +1,6 @@
 [project]
 name = "fortidlp"
-version = "0.91"
+version = "0.92"
 authors = [
   { name="Rafael Foster", email="rafaelgfoster@gmail.com" }
 ]
