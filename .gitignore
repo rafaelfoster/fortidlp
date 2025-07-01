@@ -1,0 +1,27 @@
+ftnt-cse.token
+converter.py
+converter*.py
+additional_functions.py
+.*.json
+*.old
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+fortidlp.egg-info
+build
+
+api_docs/
+vendors/__pycache__/*
+config/__pycache__/*
+config/credentials.ini
+jobs
+test.py
+*test*
+*.pyc
+TO-DO.md
+*.log
