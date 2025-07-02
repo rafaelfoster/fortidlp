@@ -34,7 +34,7 @@ class AuthenticationHandler:
         
         return status, data, response_headers
 
-    def get_headers(self, fedr_host, auth_token):
-        headers = {"Authorization": f"Bearer {auth_token}"}
-        status, data, res_headers = self.test_authentication(headers, fedr_host)
-        return (headers, fedr_host) if status else (None, data)
+    def get_headers(self, fdlp_host, access_token):
+        headers = {"Authorization": f"Bearer {access_token}"}
+        status, data, res_headers = self.test_authentication(headers, fdlp_host)
+        return (headers, fdlp_host) if status else (None, data)
