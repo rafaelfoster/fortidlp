@@ -14,5 +14,5 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/rafaelfoster/fortiedr"
+Homepage = "https://github.com/rafaelfoster/fortidlp"
 Issues = "https://github.com/rafaelfoster/fortiedr/issues"

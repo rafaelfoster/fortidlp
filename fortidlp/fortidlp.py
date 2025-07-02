@@ -682,6 +682,35 @@ class AgentConfigs:
 		url = f'/api/v1/agent-configs/{config_id}'
 		return fortidlp_connection.delete(url)
 
+
+class AgentEnrollment:
+
+	def get_tokens(self) -> dict:
+		'''
+		Class AgentEnrollment
+		Description:  Get enrollment tokens.
+		Returns:
+			dict: The response from the API.
+		'''
+		url = "/api/v1/enrollment/tokens"
+		return fortidlp_connection.get(url)
+
+	def revoke_token(self, token_id: str) -> dict:
+		'''
+		Class AgentEnrollment
+		Description:  Revoke an enrollment token.
+		
+		Args:
+			token_id (str): The ID of the enrollment token to revoke.
+
+		Returns:
+			bool: Status of the request (True or False). 
+			None: This function does not return any data.
+		'''
+
+		url = f'/api/v1/enrollment/tokens/{token_id}/revoke'
+		return fortidlp_connection.send(url)
+
 class Labels:
 	'''Class Labels
 	Description:  Return a list of labels.
@@ -713,9 +742,9 @@ class Labels:
 		if category:
 			data["category"] = category
 		if anonymise is not None:
-			data["anonymise"] = anonymise
+			data["anonymise"] = str(anonymise)
 		if flagged is not None:
-			data["flagged"] = flagged
+			data["flagged"] = str(flagged)
 
 		return fortidlp_connection.send(url, params=data)
 
@@ -764,7 +793,7 @@ class Labels:
 
 		return fortidlp_connection.send(url, params=parameters)
 
-debug = None
+debug = False
 ssl_verification = True
     
 def ignore_certificate():
@@ -784,20 +813,20 @@ def auth( host: str, access_token: str):
 	# ManagementHost = re.search(r'(https?://)?(([a-zA-Z0-9]+)(\.[a-zA-Z0-9.-]+))', host)
 	# host = ManagementHost.group(2)
 
-	headers, host = login.get_headers(
+	headers, host_result = login.get_headers(
 		fdlp_host=host,
 		access_token=access_token,
 	)
 
-	if headers is None:
+	if headers is None or not isinstance(host_result, str):
 		status = False
-		data = host
+		data = host_result
 	else:
 		status = True
 		data = 'AUTHENTICATION_SUCCEEDED'
 
 		fortidlp_connection = APIHandler()
-		authentication = fortidlp_connection.conn(headers, host, debug, ssl_verification)
+		authentication = fortidlp_connection.conn(headers, host_result, debug, ssl_verification)
 
 		cur_dir = os.path.dirname(__file__)
 

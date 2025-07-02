@@ -33,34 +33,34 @@ class APIHandler:
 
         self.SSL_Verify = enable_ssl
 
-    def get(self, url, params=None, request_type=None):
+    def get(self, url, params=None, request_type=None) -> dict:
         return self._exec("GET", url, params, request_type=request_type)
 
-    def send(self, url, params=None, request_type=None):
+    def send(self, url, params=None, request_type=None) -> dict:
         return self._exec("POST", url, params, request_type=request_type)
 
-    def insert(self, url, params=None, request_type=None):
+    def insert(self, url, params=None, request_type=None) -> dict:
         return self._exec("PUT", url, params, request_type=request_type)
 
-    def update(self, url, params=None, request_type=None):
+    def update(self, url, params=None, request_type=None) -> dict:
         return self._exec("PATCH", url, params, request_type=request_type)
 
-    def delete(self, url, params=None, request_type=None):
+    def delete(self, url, params=None, request_type=None) -> dict:
         return self._exec("DELETE", url, params, request_type=request_type)
     
-    def download(self, url, params=None, request_type=None, file_format = 'zip', download_folder = ''):
+    def download(self, url, params=None, request_type=None, file_format = 'zip', download_folder = '') -> object:
         self.download_folder = download_folder
         return self._exec("GET", url, params, request_type=request_type, download_file=True, file_format=file_format)
     
-    def upload(self, url, file, params=None, request_type=None ):
+    def upload(self, url, file, params=None, request_type=None ) -> dict:
         return self._exec("POST", url, params, request_type=request_type, upload_file=file)
 
-    def _exec(self, method, url, params=None, download_file=False, request_type=None, file_format=None, upload_file=None):
+    def _exec(self, method, url, params=None, download_file=False, request_type=None, file_format=None, upload_file=None) -> dict:
         if method not in ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']:
             raise ValueError("Method not supported")
 
         if not self.headers or not self.host:
-            return "NOT AUTHENTICATED. Run Auth() first."
+            return {"status": False, "data": "NOT AUTHENTICATED. Run Auth() first."}
 
         params = {k: v for k, v in (params or {}).items() if v is not None}
         url = f"https://{self.host}{url}"

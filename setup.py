@@ -8,12 +8,13 @@ with open(f"{cur_dir}/requirements.txt") as f:
 
 setup(
     name="fortidlp",
-    version="0.95",
+    version="0.96",
     description="This FortiDLP module is an open-source Python library that simplifies interaction with the FortiDLP Cloud API.",
     author="Rafael Foster",
     author_email="rafaelgfoster@gmail.com",
     project_urls={
-        "GitHub": "https://github.com/rafaelfoster/fortidlp",
+        "Source": "https://github.com/rafaelfoster/fortidlp",
+
     },
     python_requires=">=3.8",
     packages=find_packages(),
