@@ -6,7 +6,7 @@ from urllib.parse import urlencode
 from fortidlp.auth import AuthenticationHandler
 from fortidlp.connector import APIHandler
 
-version = '0.2'
+version = '1.0'
 
 fortidlp_connection = APIHandler()
 
