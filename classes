@@ -1,0 +1,2350 @@
+Class: Access Tokens
+
+GET
+/api/v1/access-tokens
+Lists access tokens.
+
+
+POST
+/api/v1/access-tokens
+Creates a new API access token.
+
+
+GET
+/api/v1/access-tokens/{jti}
+Gets information about an access token.
+
+
+POST
+/api/v1/access-tokens/{jti}/revoke
+Revokes a token's access to the API.
+
+Class: Admin
+Performs administrative and management tasks.
+
+See the FortiDLP Admin Guide for more information
+
+
+PUT
+/api/v1/admin/agents/archived/delete
+Deletes unused archived agents.
+
+
+GET
+/api/v1/admin/agents/binaries
+Downloads an agent binary.
+
+
+DELETE
+/api/v1/admin/agents/crashes
+Deletes all agent crash reports.
+
+
+GET
+/api/v1/admin/agents/crashes
+Lists agent crash dumps.
+
+
+PUT
+/api/v1/admin/agents/labels/add
+Assigns labels to a set of agents.
+
+
+PUT
+/api/v1/admin/agents/labels/remove
+Unassigns labels to a set of agents.
+
+
+GET
+/api/v1/admin/agents/updates
+Gets the available agent upgrade versions.
+
+
+GET
+/api/v1/admin/agents/{id}/classifications
+Gets classifications assigned to an agent.
+
+
+DELETE
+/api/v1/admin/agents/{id}/classifications/{classification_id}
+Removes an agent classification.
+
+
+POST
+/api/v1/admin/agents/{id}/classifications/{classification_id}
+Assigns a classification to an agent.
+
+
+POST
+/api/v1/admin/agents/{id}/classifications/{classification_id}/exclude
+Remove and exclude a classification from an agent.
+
+
+DELETE
+/api/v1/admin/agents/{id}/crashes
+Deletes all crash reports for an agent.
+
+
+GET
+/api/v1/admin/agents/{id}/crashes
+Lists agent crash events for a given ID.
+
+
+DELETE
+/api/v1/admin/agents/{id}/crashes/{crash_id}
+Downloads an agent crash report.
+
+
+GET
+/api/v1/admin/agents/{id}/crashes/{crash_id}
+Downloads an agent crash report.
+
+
+GET
+/api/v1/admin/agents/{id}/labels
+Gets labels assigned to an agent.
+
+
+DELETE
+/api/v1/admin/login/banner
+Deletes the login banner configuration.
+
+
+GET
+/api/v1/admin/login/banner
+Gets the login banner configuration.
+
+
+PUT
+/api/v1/admin/login/banner
+Updates the login banner configuration.
+
+
+GET
+/api/v1/admin/operator_sessions
+Lists operator sessions.
+
+
+POST
+/api/v1/admin/operator_sessions/{id}/revoke
+Revokes an operator session.
+
+
+POST
+/api/v1/admin/users
+Creates a user.
+
+
+POST
+/api/v1/admin/users/bulk
+Creates a set of users.
+
+
+POST
+/api/v1/admin/users/import
+Import a set of users from csv.
+
+
+PUT
+/api/v1/admin/users/labels/add
+Assigns labels to a set of users.
+
+
+PUT
+/api/v1/admin/users/labels/remove
+Unassigns labels from a set of users.
+
+
+POST
+/api/v1/admin/users/restore
+Allows restoration of a user through user sync. No user data is restored by this operation. The restored user will be in an archived state until a sync of their data is performed.
+
+
+GET
+/api/v1/admin/users/{id}/labels
+Gets labels assigned to a user.
+
+
+POST
+/api/v1/admin/users/{id}/photo
+Adds a user photo for the specified user.
+
+
+PUT
+/api/v1/admin/users/{id}/useruris
+Adds/removes user uris for the given user ID.
+
+
+DELETE
+/api/v1/admin/users/{uuid}
+Clears all Personally Identifiable Information (PII) pertaining to the specified user and marks them as deleted.
+
+
+GET
+/api/v1/admin/version
+Retrieves the stack version.
+
+Class: Agent Actions
+Requests and monitors agent actions.
+
+
+
+POST
+/api/v1/actions
+Request an agent to perform an action (Prior to agent version 10.5.3).
+
+
+DELETE
+/api/v1/actions/active
+Unset active actions
+
+
+POST
+/api/v1/actions/active
+Query active actions
+
+
+GET
+/api/v1/actions/available
+List available action types
+
+
+POST
+/api/v1/actions/available
+Query supported action types for one or more agents
+
+
+DELETE
+/api/v1/actions/debug-bundles/{agent_uuid}/{action_uuid}/{filename}
+Deletes the debug bundles taken as the result of an action on an agent.
+
+
+GET
+/api/v1/actions/debug-bundles/{agent_uuid}/{action_uuid}/{filename}
+Gets a debug bundle taken as the result of an action on an agent.
+
+
+DELETE
+/api/v1/actions/performance-reports/{agent_uuid}/{action_uuid}/{filename}
+Deletes the performance report taken as the result of an action on an agent.
+
+
+GET
+/api/v1/actions/performance-reports/{agent_uuid}/{action_uuid}/{filename}
+Gets a performance report uploaded as the result of an action on an agent.
+
+
+DELETE
+/api/v1/actions/screenshots/{agent_uuid}/{action_uuid}/{filename}
+Deletes the screenshot taken as the result of an action on an agent.
+
+
+GET
+/api/v1/actions/screenshots/{agent_uuid}/{action_uuid}/{filename}
+Gets a screenshot taken as the result of an action on an agent.
+
+
+POST
+/api/v1/actions/trigger
+Request an agent to perform an action. (Agent version 10.5.3 onwards)
+
+
+GET
+/api/v1/actions/{agent_uuid}/in-flight
+List in-flight actions that have been triggered but are not yet complete.
+
+
+DELETE
+/api/v1/actions/{agent_uuid}/{action_uuid}/{filename}
+Deletes action content
+
+
+GET
+/api/v1/actions/{agent_uuid}/{action_uuid}/{filename}
+Gets action content
+
+Class: Agent Configs
+Applies configuration to agents.
+
+
+
+GET
+/api/v1/agent-configs
+List agent configurations
+
+
+POST
+/api/v1/agent-configs
+Creates a new agent configuration and returns the new agent configuration
+
+
+POST
+/api/v1/agent-configs/export
+Export the agent configs specified in the request.
+
+
+POST
+/api/v1/agent-configs/import
+Import agent configs.
+
+
+POST
+/api/v1/agent-configs/test
+Return config key-values by label uuids
+
+
+DELETE
+/api/v1/agent-configs/{id}
+Delete an agent configuration
+
+
+GET
+/api/v1/agent-configs/{id}
+Get an agent configuration
+
+
+PUT
+/api/v1/agent-configs/{id}
+Updates an agent configuration
+
+
+DELETE
+/api/v1/agent-configs/{id}/keys/{key}
+Deletes the given key if it exists and its value.
+
+
+GET
+/api/v1/agent-configs/{id}/keys/{key}
+Retrieves the value for a given key from the data field of an agent configuration. Returns NOT_FOUND if key does not exist.
+
+
+POST
+/api/v1/agent-configs/{id}/keys/{key}
+Adds the given key-value pair to an agent configuration. If the key exists, the value is updated.
+
+
+DELETE
+/api/v1/agent-configs/{id}/labels
+Unassign labels from an agent configuration
+
+
+GET
+/api/v1/agent-configs/{id}/labels
+Return labels assigned to an agent configuration.
+
+
+PUT
+/api/v1/agent-configs/{id}/labels
+Assign labels to an agent configuration
+
+Class: Agent Enrollment
+Create and manage agent enrollment tokens.
+
+
+
+POST
+/api/v1/admin/agents/enroll
+Creates an agent enrollment bundle.
+
+
+GET
+/api/v1/enrollment/bootstrap-token
+
+
+GET
+/api/v1/enrollment/tokens
+Gets agent enrollment tokens.
+
+
+POST
+/api/v1/enrollment/tokens
+Creates an agent enrollment token
+
+
+GET
+/api/v1/enrollment/tokens/{id}
+
+
+PUT
+/api/v1/enrollment/tokens/{id}
+Update enroll token configuration
+
+
+GET
+/api/v1/enrollment/tokens/{id}/bundle
+Download the enrollment bundle specified in the request.
+
+
+POST
+/api/v1/enrollment/tokens/{id}/revoke
+Revoke enroll token
+
+Audit Logs
+Searches the operator audit log.
+
+
+
+DELETE
+/api/v1/audit
+Clears the contents of the audit log.
+
+
+POST
+/api/v1/audit/export
+Exports the audit log as a plain text file with one entry per line, encoded in JSON format, optionally including a digital signature if the `signed` flag is enabled.
+
+
+GET
+/api/v1/audit/key
+Returns the public key in PEM format, which can be used to verify the signature on a signed audit log export
+
+
+POST
+/api/v1/audit/search
+Searches the audit log.
+
+
+POST
+/api/v1/audit/verify
+Validates the JWS signature and checksum of an audit log export.
+
+Class: Cases
+Creates, manages and adds content to cases.
+
+
+
+GET
+/api/v1/cases
+Return info of all cases that match QueryCasesRequest
+
+
+POST
+/api/v1/cases
+Create a new case.
+
+
+DELETE
+/api/v1/cases/{id}
+Delete a case.
+
+
+GET
+/api/v1/cases/{id}
+Return info of an individual case by ID.
+
+
+PUT
+/api/v1/cases/{id}
+Update a case.
+
+
+POST
+/api/v1/cases/{id}/assign
+Assign a case to an operator by operator URI.
+
+
+GET
+/api/v1/cases/{id}/content
+Return contents of a case by ID.
+
+
+POST
+/api/v1/cases/{id}/content
+Add contents to a case.
+
+
+DELETE
+/api/v1/cases/{id}/content/{content_uuid}
+Delete contents of a case.
+
+
+PUT
+/api/v1/cases/{id}/content/{content_uuid}
+Update the contents of a case.
+
+
+GET
+/api/v1/cases/{id}/content/{filename}
+Get image for case content.
+
+
+POST
+/api/v1/cases/{id}/image
+Add image to a case.
+
+
+POST
+/api/v1/cases/{id}/unassign
+Unassign a case from an operator by operator URI.
+
+Class: Classifications
+Gets agent classification categories.
+
+
+
+GET
+/api/v1/classifications
+Return all classifications
+
+
+GET
+/api/v1/classifications/{id}
+Return classification by id
+
+Dashboard Service
+Manages dashboards.
+
+
+
+GET
+/api/v2/dashboards
+
+
+POST
+/api/v2/dashboards
+
+
+GET
+/api/v2/dashboards/templates
+
+
+DELETE
+/api/v2/dashboards/{uuid}
+
+
+GET
+/api/v2/dashboards/{uuid}
+
+
+PUT
+/api/v2/dashboards/{uuid}
+
+Class: Drive Labels Scheduled Sync
+
+
+POST
+/api/v1/google/drive/labels/schedule-sync
+
+
+GET
+/api/v1/google/drive/labels/schedule-sync/list
+
+
+DELETE
+/api/v1/google/drive/labels/schedule-sync/{uuid}
+
+
+GET
+/api/v1/google/drive/labels/schedule-sync/{uuid}
+
+
+PUT
+/api/v1/google/drive/labels/schedule-sync/{uuid}
+
+
+POST
+/api/v1/microsoft/onedrive/labels/schedule-sync
+
+
+GET
+/api/v1/microsoft/onedrive/labels/schedule-sync/list
+
+
+DELETE
+/api/v1/microsoft/onedrive/labels/schedule-sync/{uuid}
+
+
+GET
+/api/v1/microsoft/onedrive/labels/schedule-sync/{uuid}
+
+
+PUT
+/api/v1/microsoft/onedrive/labels/schedule-sync/{uuid}
+
+Class: Emails
+Configures email notifications.
+
+
+
+GET
+/api/v1/emails
+Lists all email notifications.
+
+
+POST
+/api/v1/emails
+Registers a new email notification.
+
+
+GET
+/api/v1/emails-verify
+
+
+DELETE
+/api/v1/emails/{id}
+Deletes the email notification.
+
+
+GET
+/api/v1/emails/{id}
+Retrieves the email notification configuration.
+
+
+PUT
+/api/v1/emails/{id}
+Updates the email notification configuration.
+
+
+POST
+/api/v1/emails/{id}/verify
+Sends a verification email to the to_address of the email notification.
+
+Class: Entities Search
+Searches or aggregates over a set of entities.
+
+
+
+POST
+/api/v2/agents/aggregate
+Aggregate agents.
+
+
+GET
+/api/v2/agents/archive/config
+Retrieve configuration for agent archivation rules.
+
+
+PUT
+/api/v2/agents/archive/config
+Updates configuration for tenant
+
+
+POST
+/api/v2/agents/components
+Gets a list of agent components for agents matching the filter.
+
+
+GET
+/api/v2/agents/components/faults
+Lists faulty components grouped by agent operating system, component and state.
+
+
+POST
+/api/v2/agents/components/suppress
+Suppresses the specified components for agents matching a filter. Suppressed components do not count towards an agent's health.
+
+
+GET
+/api/v2/agents/components/terms
+Retrieves all terms for agent components
+
+
+POST
+/api/v2/agents/components/unsuppress
+Unsuppresses the specified components for agents matching a filter. Suppressed components do not count towards an agent's health.
+
+
+POST
+/api/v2/agents/export/csv
+Exports agents search as CSV data.
+
+
+GET
+/api/v2/agents/export/fields
+Returns all possible fields that can be exported for agents and whether each field is included by default
+
+
+POST
+/api/v2/agents/export/xlsx
+Exports agents search as XLSX data.
+
+
+POST
+/api/v2/agents/labels/add
+Add labels to agents.
+
+
+POST
+/api/v2/agents/labels/remove
+Remove labels from agents.
+
+
+POST
+/api/v2/agents/revoke
+Revokes the licenses of agents that match the provided filter.
+
+
+POST
+/api/v2/agents/search
+Searches agents.
+
+
+POST
+/api/v2/agents/state
+Changes agent state to specified in request state.
+
+
+GET
+/api/v2/agents/terms
+Retrieves all terms for agents
+
+
+GET
+/api/v2/agents/{uuid}
+Get a target agent
+
+
+GET
+/api/v2/agents/{uuid}/components
+Gets the health for the agent's components.
+
+
+POST
+/api/v2/agents/{uuid}/components/suppress
+Suppresses the specified components for the agent. Suppressed components do not count towards the health of the agent.
+
+
+POST
+/api/v2/agents/{uuid}/components/unsuppress
+Unsuppresses the specified components for the agent. Suppressed components do not count towards the health of the agent.
+
+
+POST
+/api/v2/agents/{uuid}/users/search
+Searches users of a specific agent.
+
+
+POST
+/api/v2/users/aggregate
+Aggregate users.
+
+
+GET
+/api/v2/users/archive/config
+Gets configuration for user archiving.
+
+
+PUT
+/api/v2/users/archive/config
+Updates configuration for tenant
+
+
+POST
+/api/v2/users/bulk/useruri
+Bulk assign useruris.
+
+
+POST
+/api/v2/users/export/csv
+Exports users search as CSV data.
+
+
+GET
+/api/v2/users/export/fields
+Returns all possible fields that can be exported for users and whether each field is included by default
+
+
+POST
+/api/v2/users/export/xlsx
+Exports users search as XLSX data.
+
+
+POST
+/api/v2/users/labels/add
+Add labels to users.
+
+
+POST
+/api/v2/users/labels/remove
+Remove labels from users.
+
+
+POST
+/api/v2/users/search
+Searches users.
+
+
+POST
+/api/v2/users/state
+Changes the state of users matching the filter to the requested state. Valid states are `ARCHIVED_INACTIVITY`, `ALWAYS_ARCHIVED`, `ACTIVE`, `ALWAYS_ACTIVE`. Deleted users matching the filter are skipped.
+
+
+GET
+/api/v2/users/terms
+Retrieves all terms for users
+
+
+POST
+/api/v2/users/useruri/export/csv
+Exports user URIs as CSV data.
+
+
+GET
+/api/v2/users/{uuid}
+Gets a single user.
+
+
+POST
+/api/v2/users/{uuid}/agents/search
+Searches agents of a specific user.
+
+
+GET
+/api/v2/users/{uuid}/photo
+Gets the photo for a user by UUID.
+
+
+GET
+/api/v2/users/{uuid}/useruri
+Gets the user URIs of a user by UUID.
+
+
+POST
+/api/v2/users/{uuid}/useruri/add
+Add useruri to user by UUID.
+
+
+POST
+/api/v2/users/{uuid}/useruri/remove
+Remove user URI from user by UUID.
+
+Class: Entra ID
+
+
+GET
+/api/v1/microsoft/entraid/configs
+Gets EntraID configurations.
+
+
+POST
+/api/v1/microsoft/entraid/configs
+Creates an EntraID configuration.
+
+
+DELETE
+/api/v1/microsoft/entraid/configs/{id}
+Deletes an EntraID configuration.
+
+
+GET
+/api/v1/microsoft/entraid/configs/{id}
+Gets an EntraID configuration.
+
+
+PUT
+/api/v1/microsoft/entraid/configs/{id}
+Updates an EntraID configuration.
+
+
+POST
+/api/v1/microsoft/entraid/configs/{id}/sync
+Requests an immediate EntraID sync for the specified configuration.
+
+
+POST
+/api/v1/microsoft/entraid/configs/{id}/sync/groups
+Requests an immediate EntraID sync to update the groups labels for the specified configuration.
+
+
+POST
+/api/v1/microsoft/entraid/count
+Returns the number of user that will be synced
+
+
+POST
+/api/v1/microsoft/entraid/groups
+Gets all Entra ID groups
+
+Class: Events
+Lookup events using event URIs.
+
+
+
+GET
+/api/v1/events
+
+
+POST
+/api/v1/events
+
+Class: File Shadow
+
+
+DELETE
+/api/v1/fileshadow/config
+
+
+GET
+/api/v1/fileshadow/config
+
+
+PUT
+/api/v1/fileshadow/config
+
+
+GET
+/api/v1/fileshadow/config/test
+
+
+GET
+/api/v1/fileshadow/decryption-tool
+
+
+GET
+/api/v1/fileshadow/evidence/{action_uuid}
+Redirects the user to download a file shadow evidence file.
+
+
+GET
+/api/v1/fileshadow/evidence/{agent_uuid}/{action_uuid}
+Redirects the user to download a file shadow evidence file.
+
+
+GET
+/api/v1/fileshadow/recipients
+
+
+DELETE
+/api/v1/fileshadow/recipients/{name}
+
+
+GET
+/api/v1/fileshadow/recipients/{name}
+
+
+PUT
+/api/v1/fileshadow/recipients/{name}
+
+
+GET
+/api/v1/forensic-evidence/clipboard/{agent_uuid}/{action_uuid}
+Redirects the user to download a clipboard evidence file.
+
+
+GET
+/api/v1/forensic-evidence/fileshadow/{agent_uuid}/{action_uuid}
+Redirects the user to download a file shadow evidence file.
+
+
+GET
+/api/v1/forensic-evidence/screenshot/{agent_uuid}/{action_uuid}
+Redirects the user to download a screenshot evidence file.
+
+Class: Global Operators
+
+
+DELETE
+/api/v2/global-operators
+Deletes the specified global operator.
+
+
+GET
+/api/v2/global-operators
+Gets the specified global operator.
+
+
+GET
+/api/v2/global-operators/search
+Gets a list of global operators matching an optional filter.
+
+
+GET
+/api/v2/global-operators/terms
+Gets available search terms for filtering global operators.
+
+Class: Google
+Manages Google API integrations.
+
+
+
+GET
+/api/v1/google/credentials
+
+
+POST
+/api/v1/google/credentials
+
+
+POST
+/api/v1/google/credentials/verify
+
+
+DELETE
+/api/v1/google/credentials/{uuid}
+
+
+GET
+/api/v1/google/credentials/{uuid}
+
+
+PUT
+/api/v1/google/credentials/{uuid}
+
+
+GET
+/api/v1/google/credentials/{uuid}/verify
+
+
+GET
+/api/v1/google/drive
+
+
+POST
+/api/v1/google/drive
+
+
+GET
+/api/v1/google/drive-labels
+
+
+PUT
+/api/v1/google/drive-labels/sync
+
+
+GET
+/api/v1/google/drive-labels/{id}
+Label ID is case-insensitive, since aggregations return the normalised (i.e. lowercase) form of their values
+
+
+DELETE
+/api/v1/google/drive/{id}
+
+
+GET
+/api/v1/google/drive/{id}
+
+
+PUT
+/api/v1/google/drive/{id}
+
+Class: Google Directory
+
+
+GET
+/api/v1/google/directory/configs
+
+
+POST
+/api/v1/google/directory/configs
+Creates an GoogleDirectory configuration.
+
+
+DELETE
+/api/v1/google/directory/configs/{id}
+
+
+GET
+/api/v1/google/directory/configs/{id}
+
+
+PUT
+/api/v1/google/directory/configs/{id}
+
+
+POST
+/api/v1/google/directory/configs/{id}/sync
+Requests an immediate Google Directory sync for the specified configuration.
+
+
+POST
+/api/v1/google/directory/configs/{id}/sync/groups
+Requests an immediate Google Directory sync to update the group labels for the specified configuration.
+
+
+POST
+/api/v1/google/directory/groups
+Gets all Google Directory groups
+
+Class: Incidents
+Handles Incidents.
+
+
+
+POST
+/api/v2/incidents/agents/count
+Counts agents involved in incidents.
+
+
+POST
+/api/v2/incidents/aggregate
+Aggregate incidents.
+
+
+POST
+/api/v2/incidents/bounded-rule-entity-count
+Returns the number of bounded (rule, entity) pairs for the given incident filter.
+
+
+POST
+/api/v2/incidents/search
+Searches incidents.
+
+
+POST
+/api/v2/incidents/status
+Sets the status of all the specified incidents to the chosen status (open/resolved).
+
+
+GET
+/api/v2/incidents/terms
+Retrieves all terms for incidents
+
+
+POST
+/api/v2/incidents/users/count
+Counts users involved in incidents.
+
+
+GET
+/api/v2/incidents/{id}
+Gets a single incident.
+
+
+POST
+/api/v2/incidents/{id}/agents/search
+Searches agents of a specific incident.
+
+
+POST
+/api/v2/incidents/{id}/labels/search
+Searches labels of a specific incident.
+
+
+POST
+/api/v2/incidents/{id}/users/search
+Searches users of a specific incident.
+
+Class: Labels
+Manages labels.
+
+
+
+POST
+/api/v1/labels
+Create a label
+
+
+POST
+/api/v1/labels/search
+Return a list of labels
+
+
+DELETE
+/api/v1/labels/{id}
+Delete label by id
+
+
+GET
+/api/v1/labels/{id}
+Return label by id
+
+
+PATCH
+/api/v1/labels/{id}
+Updates a label.
+
+Class: Ldap
+
+
+GET
+/api/v1/admin/ldap/config
+Gets LDAP configurations.
+
+
+POST
+/api/v1/admin/ldap/config
+Creates an LDAP configuration.
+
+
+DELETE
+/api/v1/admin/ldap/config/{id}
+Deletes an LDAP configuration.
+
+
+GET
+/api/v1/admin/ldap/config/{id}
+Gets an LDAP configuration.
+
+
+PUT
+/api/v1/admin/ldap/config/{id}
+Updates an LDAP configuration.
+
+
+GET
+/api/v1/admin/ldap/config/{id}/status
+Fetches the sync status for the last performed LDAP sync. An LDAP config corresponding to `id` must exist.
+
+
+PUT
+/api/v1/admin/ldap/config/{id}/status
+Updates the sync status for the last performed LDAP sync. An LDAP config corresponding to `id` must exist.
+
+
+GET
+/api/v1/admin/ldap/sync-tool
+Returns versions of the LDAP sync tool
+
+
+POST
+/api/v1/admin/ldap/sync/{id}
+Performs an LDAP sync for the specified configuration.
+
+Class: Locations
+Manages custom geo-locations and subnets.
+
+
+
+GET
+/api/v1/locations
+
+
+POST
+/api/v1/locations
+
+
+POST
+/api/v1/locations/query
+
+
+DELETE
+/api/v1/locations/{id}
+
+
+GET
+/api/v1/locations/{id}
+
+
+PUT
+/api/v1/locations/{id}
+
+
+GET
+/api/v1/locations/{id}/subnets
+
+
+POST
+/api/v1/locations/{location_id}/subnets
+
+
+DELETE
+/api/v1/locations/{location_id}/subnets/{id}
+
+
+GET
+/api/v1/locations/{location_id}/subnets/{id}
+
+Class: ML
+Configures agent offline config.
+
+
+
+GET
+/api/v1/ml/agentoffline/config
+
+
+PUT
+/api/v1/ml/agentoffline/config
+
+Class: Microsoft
+Manages Microsoft 365 integrations and configuration.
+
+
+
+GET
+/api/v1/microsoft/credentials
+
+
+POST
+/api/v1/microsoft/credentials
+
+
+POST
+/api/v1/microsoft/credentials/verify
+
+
+DELETE
+/api/v1/microsoft/credentials/{uuid}
+
+
+GET
+/api/v1/microsoft/credentials/{uuid}
+
+
+PUT
+/api/v1/microsoft/credentials/{uuid}
+
+
+GET
+/api/v1/microsoft/credentials/{uuid}/verify
+
+
+GET
+/api/v1/microsoft/onedrive
+
+
+POST
+/api/v1/microsoft/onedrive
+
+
+GET
+/api/v1/microsoft/onedrive/labels
+
+
+PUT
+/api/v1/microsoft/onedrive/labels/sync
+
+
+GET
+/api/v1/microsoft/onedrive/labels/{id}
+
+
+DELETE
+/api/v1/microsoft/onedrive/{id}
+
+
+GET
+/api/v1/microsoft/onedrive/{id}
+
+
+PUT
+/api/v1/microsoft/onedrive/{id}
+
+Class: Operators
+Manages the internal operators directory.
+
+
+
+GET
+/api/v1/authentication-log
+List the authentication log for operator.
+
+
+GET
+/api/v1/operators
+Return a list of operators.
+
+
+POST
+/api/v1/operators
+Adds a new operator. The roles for the new operator must lie within the calling operator's scope and pseudonymized operators may not create non-pseudonymized operators.
+
+
+DELETE
+/api/v1/operators/{operator_id}
+Deletes the operator. The roles of the operator to be deleted must lie within the calling operator's scope and pseudonymized operators may not delete non-pseudonymized operators.
+
+
+GET
+/api/v1/operators/{operator_id}
+Gets the operator.
+
+
+PUT
+/api/v1/operators/{operator_id}
+Updates the operator. The change in roles must lie within the calling operator's scope and pseudonymized operators may not update non-pseudonymized operators to be pseudonymized or vice-versa.
+
+
+DELETE
+/api/v1/operators/{operator_id}/mfa
+Resets MFA authentication for the operator.
+
+Class: Outlook
+Manages Outlook add-in configuration.
+
+
+
+DELETE
+/api/v1/outloook/certificate
+
+
+GET
+/api/v1/outloook/certificate
+
+
+POST
+/api/v1/outloook/certificate
+
+Class: Passphrase
+Changes and resets operator passphrases.
+
+
+
+GET
+/api/v1/forgotten-passphrase
+
+
+DELETE
+/api/v1/operators/{operator_id}/passphrase
+Invalidates passphrase for operator.
+
+
+POST
+/api/v1/operators/{operator_id}/passphrase/reset-link
+Generates passphrase reset link for operator.
+
+
+POST
+/api/v1/operators/{operator_id}/passphrase/reset-next-login
+Prompts the user to reset their passphrase on login.
+
+
+POST
+/api/v1/passphrase
+Set passphrase for the operator (only callable with pw reset token) Authenticated users should call the ChangePassphrase endpoint instead
+
+
+PUT
+/api/v1/passphrase
+Change passphrase for the operator. Operator attributes must have canChangePassphrase == true
+
+
+GET
+/api/v1/passphrase-reset
+
+
+POST
+/api/v1/passphrase/test
+Test passphrase for the operator Authenticated users should call the ChangePassphrase endpoint instead
+
+CLass: Perspectives
+Manages search perspectives.
+
+
+
+GET
+/api/v1/perspectives
+Return all perspectives
+
+
+POST
+/api/v1/perspectives
+Create a perspective
+
+
+DELETE
+/api/v1/perspectives/{id}
+Delete perspective by id
+
+
+GET
+/api/v1/perspectives/{id}
+Return perspective by id
+
+Class: Policies
+Manages agent policies.
+
+
+
+GET
+/api/v1/policies/data
+Return all data objects
+
+
+POST
+/api/v1/policies/data
+Create a data object using an existing ref
+
+
+POST
+/api/v1/policies/data/upload
+Upload a data object blob
+
+
+DELETE
+/api/v1/policies/data/{id}
+Delete data object by id
+
+
+GET
+/api/v1/policies/data/{id}
+Return data object by id
+
+
+PATCH
+/api/v1/policies/data/{id}
+Update a data object - can update `name`, `description`, `tags`
+
+
+GET
+/api/v1/policies/data/{id}/download
+Downloads the data object specified in the request.
+
+
+POST
+/api/v1/policies/export
+Export the policy groups specified in the request.
+
+
+GET
+/api/v1/policies/group-templates
+Fetch all group templates
+
+
+GET
+/api/v1/policies/group-templates/{id}/templates
+Fetch all Policy Templates belonging to a particular group template
+
+
+GET
+/api/v1/policies/groups
+Fetch all Policy Groups
+
+
+POST
+/api/v1/policies/groups
+Create a Policy Group
+
+
+POST
+/api/v1/policies/groups/publish
+Publish Policy Groups
+
+
+POST
+/api/v1/policies/groups/test
+Returns policy groups that apply for given labels
+
+
+POST
+/api/v1/policies/groups/{group_id}/policies
+Create a Policy within a Policy Group
+
+
+GET
+/api/v1/policies/groups/{group_id}/policies/{id}
+Fetch a Policy
+
+
+PATCH
+/api/v1/policies/groups/{group_id}/policies/{id}
+Update part of a Policy - can update `name`, `description`, `enabled`, `parameter_values`, `clustering_rules`
+
+
+PUT
+/api/v1/policies/groups/{group_id}/policies/{id}
+Complete update of a Policy - can update `name`, `description`, `enabled`, `parameter_values`, `clustering_rules`
+
+
+GET
+/api/v1/policies/groups/{group_id}/policies/{id}/defaults
+Gets the Policy updated to use the template defaults
+
+
+DELETE
+/api/v1/policies/groups/{group_id}/policies/{policy_id}
+Delete a Policy
+
+
+DELETE
+/api/v1/policies/groups/{id}
+Delete a Policy Group
+
+
+GET
+/api/v1/policies/groups/{id}
+Fetch a Policy Group
+
+
+PATCH
+/api/v1/policies/groups/{id}
+Update part of a Policy Group - can update `name`, `description`, `enabled`, `match`. `exclude_match`, `include_labels` and `exclude_labels`
+
+
+PUT
+/api/v1/policies/groups/{id}
+Complete update of a Policy Group - can update `name`, `description`, `enabled`, `match`. `exclude_match`,
+
+
+POST
+/api/v1/policies/groups/{id}/clone
+Copy a Policy Group
+
+
+DELETE
+/api/v1/policies/groups/{id}/exclude-labels/{label_id}
+Unassign exclude label from agent policy group
+
+
+POST
+/api/v1/policies/groups/{id}/exclude-labels/{label_id}
+Assign exclude label to agent policy group
+
+
+GET
+/api/v1/policies/groups/{id}/labels
+Deprecated in favour of using /api/v1/policies/groups/{id}.
+
+
+DELETE
+/api/v1/policies/groups/{id}/labels/{label_id}
+Unassign label from agent policy group
+
+
+POST
+/api/v1/policies/groups/{id}/labels/{label_id}
+Assign label to agent policy group
+
+
+POST
+/api/v1/policies/groups/{id}/publish
+Publish a Policy Group
+
+
+POST
+/api/v1/policies/import
+Import agent policy groups together with their policies and data objects.
+
+
+GET
+/api/v1/policies/packs
+Fetch all Policy Packs
+
+
+POST
+/api/v1/policies/packs/upload
+Upload all Policy Packs
+
+
+DELETE
+/api/v1/policies/packs/{id}
+Delete a Policy Pack
+
+
+GET
+/api/v1/policies/packs/{id}
+Fetch a Policy Pack
+
+
+GET
+/api/v1/policies/packs/{id}/templates
+Fetch all Policy Templates belonging to a particular Policy Pack
+
+
+GET
+/api/v1/policies/packs/{pack_id}/templates/{id}
+Fetch a Policy Template
+
+
+POST
+/api/v1/policies/search
+
+Class: Quota
+Manages tenant usage quotas.
+
+
+
+GET
+/api/v1/license/status
+Get tenant's maximum number of enrolled agents
+
+Class: Roles
+Manages operator roles.
+
+
+
+GET
+/api/v1/roles
+Return a list of roles.
+
+
+POST
+/api/v1/roles
+Creates a new role.
+
+
+DELETE
+/api/v1/roles/{id}
+Delete a role.
+
+
+GET
+/api/v1/roles/{id}
+Return a role.
+
+
+PUT
+/api/v1/roles/{id}
+Update a role.
+
+Class: SAML
+Configures a SAML authentication provider.
+
+
+
+DELETE
+/api/v1/saml/config
+Delete the SAML configuration for the operator's tenant
+
+
+GET
+/api/v1/saml/config
+Get the SAML configuration for the operator's tenant
+
+
+PUT
+/api/v1/saml/config
+Edit the SAML configuration for the operator's tenant
+
+
+DELETE
+/api/v1/saml/cryptokeys
+Delete cryptographic keys in use for SAML configuration
+
+
+GET
+/api/v1/saml/cryptokeys
+Return the currently configured SAML certificate for the tenant
+
+
+POST
+/api/v1/saml/cryptokeys
+Generate cryptographic keys (self-signed RSA certificate)
+
+
+PUT
+/api/v1/saml/cryptokeys
+Allows a cryptographic key and its corresponding certificate (with embedded public key) to be uploaded
+
+
+GET
+/api/v1/saml/info
+Get basic information (ACS URL and audience URI) for the operator's tenant. Doesn't require any prior configuration actions
+
+Class: SaaS Applications
+Manages SaaS applications.
+
+
+
+POST
+/api/v2/saas-applications/aggregate
+Aggregates SaaS applications.
+
+
+POST
+/api/v2/saas-applications/allow_domainless_login
+Configures SaaS applications matching an optional filter to treat domainless logins as corporate logins
+
+
+GET
+/api/v2/saas-applications/categories
+Lists SaaS application categories.
+
+
+GET
+/api/v2/saas-applications/config
+Gets the current SaaS application config.
+
+
+POST
+/api/v2/saas-applications/config
+Update the SaaS application config. `use_default_scores` sets whether automatically created SaaS applications are created with a score of zero or the default application score. `unused_archive_enabled` and `unused_archive_threshold` configure SaaS application auto-archiving. Configure `corporate_domains` to indicate which email addresses are corporate.
+
+
+POST
+/api/v2/saas-applications/create
+Adds SaaS application entries by ID.
+
+
+POST
+/api/v2/saas-applications/custom/create
+Creates a new custom SaaS application.
+
+
+POST
+/api/v2/saas-applications/custom/test
+Tests URL matching.
+
+
+PATCH
+/api/v2/saas-applications/custom/{id}
+Updates the specified custom SaaS application.
+
+
+DELETE
+/api/v2/saas-applications/custom/{id}/icon
+Deletes the SaaS application icon.
+
+
+POST
+/api/v2/saas-applications/custom/{id}/icon
+Updates the specified custom SaaS application icon.
+
+
+POST
+/api/v2/saas-applications/export/csv
+Exports SaaS applications search as CSV data.
+
+
+GET
+/api/v2/saas-applications/export/fields
+Returns all possible fields that can be exported for SaaS applications and whether each field is included by default
+
+
+POST
+/api/v2/saas-applications/export/xlsx
+Exports SaaS applications search as XLSX data.
+
+
+POST
+/api/v2/saas-applications/scores
+Overrides the risk scores for SaaS applications matching an optional filter.
+
+
+POST
+/api/v2/saas-applications/scores/reset
+Resets the scores of all applications matching an optional filter to their defaults. If no filter is provided the `all` flag must be set to reset all SaaS application entries.
+
+
+POST
+/api/v2/saas-applications/search
+Searches SaaS applications.
+
+
+POST
+/api/v2/saas-applications/state
+Changes the state of SaaS applications.
+
+
+POST
+/api/v2/saas-applications/templates
+Searches SaaS applications which may be added to the inventory.
+
+
+GET
+/api/v2/saas-applications/templates/terms
+Retrieves all terms for SaaS application templates.
+
+
+GET
+/api/v2/saas-applications/terms
+Retrieves all terms for SaaS applications.
+
+
+POST
+/api/v2/saas-applications/verdict
+Changes the verdict status of SaaS applications.
+
+
+GET
+/api/v2/saas-applications/{id}
+Gets a single SaaS application by ID.
+
+
+GET
+/api/v2/saas-applications/{id}/icon
+Gets the icon for a SaaS application.
+
+CLass: Saved Queries
+Managed saved queries for the Investigate module.
+
+
+
+GET
+/api/v2/search/queries
+Lists saved queries.
+
+
+POST
+/api/v2/search/queries
+Create a saved query.
+
+
+DELETE
+/api/v2/search/queries/{uuid}
+Delete a saved query.
+
+
+GET
+/api/v2/search/queries/{uuid}
+Get a saved query by UUID.
+
+
+PUT
+/api/v2/search/queries/{uuid}
+Update a saved query.
+
+Class: Scoped Investigations
+
+
+GET
+/api/v2/scoped-investigations
+Fetches a list of scoped investigations.
+
+
+POST
+/api/v2/scoped-investigations
+Assigns a scoped investigation.
+
+
+DELETE
+/api/v2/scoped-investigations/active
+Deactivates the active scoped investigation if present.
+
+
+POST
+/api/v2/scoped-investigations/aggregate
+Aggregate scoped investigations
+
+
+GET
+/api/v2/scoped-investigations/requests
+Fetches a list of scoped investigation requests for the current operator.
+
+
+POST
+/api/v2/scoped-investigations/requests
+Requests a scoped investigation.
+
+
+POST
+/api/v2/scoped-investigations/requests/aggregate
+Aggregate scoped investigation requests
+
+
+GET
+/api/v2/scoped-investigations/requests/{uuid}
+Fetches the details of a scoped investigation for the current operator.
+
+
+POST
+/api/v2/scoped-investigations/requests/{uuid}
+Updates a scoped investigation request for the current operator.
+
+
+POST
+/api/v2/scoped-investigations/requests/{uuid}/activate
+Activates the specified scoped investigation.
+
+
+POST
+/api/v2/scoped-investigations/requests/{uuid}/cancel
+Cancels a request for a scoped investigation.
+
+
+GET
+/api/v2/scoped-investigations/terms
+Fetches available search terms for filtering scoped investigations.
+
+
+GET
+/api/v2/scoped-investigations/{uuid}
+Fetches the details of a scoped investigation.
+
+
+POST
+/api/v2/scoped-investigations/{uuid}
+Updates a scoped investigation request.
+
+
+POST
+/api/v2/scoped-investigations/{uuid}/approve
+Update the scoped investigation and approve it.
+
+
+POST
+/api/v2/scoped-investigations/{uuid}/revoke
+Revokes access to the specified scoped investigation.
+
+Class: Search
+Gets available search parameters.
+
+
+
+GET
+/api/v1/search/terms
+
+Class: Sequence Detection
+Manages Sequence Detection Definitions
+
+
+
+GET
+/api/v1/sequence-detections/bounded-definitions
+
+
+GET
+/api/v1/sequence-detections/bounded-definitions/{uuid}/entity-count
+
+
+GET
+/api/v1/sequence-detections/definitions
+
+
+POST
+/api/v1/sequence-detections/definitions
+
+
+DELETE
+/api/v1/sequence-detections/definitions/{uuid}
+
+
+GET
+/api/v1/sequence-detections/definitions/{uuid}
+
+
+PUT
+/api/v1/sequence-detections/definitions/{uuid}
+
+
+POST
+/api/v1/sequence-detections/definitions/{uuid}/publish
+
+Class: Siem
+Configures SIEM export streams.
+
+
+
+GET
+/api/v1/siem
+Lists all configured SIEM streams.
+
+
+POST
+/api/v1/siem
+Configures and creates the SIEM stream.
+
+
+GET
+/api/v1/siem/health/{uuid}
+Retrieves simple metrics for monitoring the health of the SIEM stream.
+
+
+DELETE
+/api/v1/siem/{uuid}
+Deletes the SIEM stream configuration.
+
+
+GET
+/api/v1/siem/{uuid}
+Retrieves the SIEM stream configuration.
+
+
+PUT
+/api/v1/siem/{uuid}
+Updates the SIEM stream configuration.
+
+Class: Stack Federation
+Manage stack federation.
+
+
+
+POST
+/api/v1/federation/enroll
+Download the enrollment token needed to enroll an agent on a federated stack.
+
+
+GET
+/api/v1/federation/routing-rules
+Gets all agent routing rules in decreasing order of priority.
+
+
+POST
+/api/v1/federation/routing-rules
+Sets the agent routing rules.
+
+
+GET
+/api/v1/federation/routing-rules/default
+Gets the default setting for accepting enrollments on a stack if there are no applicable routing rules.
+
+
+POST
+/api/v1/federation/routing-rules/default
+Sets the default setting for accepting enrollments on a stack if there are no applicable routing rules.
+
+
+POST
+/api/v1/federation/routing-rules/export
+Export all agent routing rules.
+
+
+POST
+/api/v1/federation/routing-rules/import
+Import a set of agent routing rules
+
+
+POST
+/api/v1/federation/routing-rules/test
+Gets the resulting stack an agent with the given labels and rollout value will be routed to.
+
+
+GET
+/api/v1/federation/routing-rules/{id}
+Gets an agent routing rule by id.
+
+
+POST
+/api/v1/federation/token/{token_id}/revoke
+Revoke a federated enrollment token.
+
+Class: Supporting Operators
+
+
+GET
+/api/v1/supporting-operators/grants
+Fetches a list of supporting operator access grants.
+
+
+DELETE
+/api/v1/supporting-operators/grants/{uuid}
+Revokes the specified supporting operator access.
+
+
+GET
+/api/v1/supporting-operators/grants/{uuid}
+Fetches the specified supporting operator access grant by ID.
+
+
+GET
+/api/v1/supporting-operators/requests
+Fetches a list of supporting operator access requests.
+
+
+DELETE
+/api/v1/supporting-operators/requests/{uuid}
+Denies the specified supporting operator access request.
+
+
+GET
+/api/v1/supporting-operators/requests/{uuid}
+Fetches a specific supporting operator access request by ID.
+
+
+POST
+/api/v1/supporting-operators/requests/{uuid}/approve
+Approves the specified supporting operator access request.
+
+Class: Timeline Search
+Searches or aggregates over a set of events.
+
+
+
+POST
+/api/v2/timeline/action_events
+
+
+POST
+/api/v2/timeline/action_events/aggregate
+
+
+POST
+/api/v2/timeline/action_events/count
+
+
+POST
+/api/v2/timeline/actions
+
+
+POST
+/api/v2/timeline/actions/aggregate
+
+
+POST
+/api/v2/timeline/actions/count
+
+
+GET
+/api/v2/timeline/activity
+
+
+POST
+/api/v2/timeline/incident_sensors
+
+
+POST
+/api/v2/timeline/incident_sensors/aggregate
+
+
+POST
+/api/v2/timeline/incident_sensors/count
+
+
+GET
+/api/v2/timeline/savedsearches
+
+
+POST
+/api/v2/timeline/savedsearches
+
+
+DELETE
+/api/v2/timeline/savedsearches/{id}
+
+
+GET
+/api/v2/timeline/savedsearches/{id}
+
+
+PUT
+/api/v2/timeline/savedsearches/{id}
+
+
+GET
+/api/v2/timeline/streams
+Lists available event streams and search parameters.
+
+
+GET
+/api/v2/timeline/{event_stream}/export/fields
+Returns the available fields that may be exported for the selected event stream.
+
+
+GET
+/api/v2/timeline/{event_stream}/{id}
+
+
+POST
+/api/v2/timeline/{query.event_stream}
+Searches an event stream.
+
+
+POST
+/api/v2/timeline/{query.event_stream}/aggregate
+Performs an aggregation over a timeline search.
+
+
+POST
+/api/v2/timeline/{query.event_stream}/count
+Counts the number of events that match a search on an event stream.
+
+
+POST
+/api/v2/timeline/{query.event_stream}/export/csv
+Exports a timeline search as CSV data.
+
+
+POST
+/api/v2/timeline/{query.event_stream}/export/xlsx
+Exports a timeline search as XLSX data.
+
+Class: Usage Statistics
+Aggregate counts of events reported by agents
+
+
+
+POST
+/api/v1/usage
+
+Class: Webhooks
+Configures outgoing webhooks on sensors and alarms.
+
+
+
+GET
+/api/v1/webhooks
+Lists all webhooks.
+
+
+POST
+/api/v1/webhooks
+Registers the webhook.
+
+
+POST
+/api/v1/webhooks/custom/validate
+Validates a webhook custom payload.
+
+
+DELETE
+/api/v1/webhooks/{uuid}
+Deletes the webhook.
+
+
+GET
+/api/v1/webhooks/{uuid}
+Retrieves the webhook status.
+
+
+PUT
+/api/v1/webhooks/{uuid}
+Updates the webhook.
+
+
+POST
+/api/v1/webhooks/{uuid}/test
+Tests the webhook.
+
+Class: MFA
+
+
+GET
+/api/v1/authentication/mfa
+
+
+DELETE
+/api/v1/authentication/mfa/totp
+
+
+GET
+/api/v1/authentication/mfa/totp/register
+
+
+POST
+/api/v1/authentication/mfa/totp/register
+
+
+GET
+/api/v1/authentication/mfa/webauthn/register
+
+
+POST
+/api/v1/authentication/mfa/webauthn/register
+
+
+DELETE
+/api/v1/authentication/mfa/webauthn/{name}
+
+Class: Indicators
+
+
+GET
+/api/v1/indicators
+Lists indicators.
+
+
+GET
+/api/v1/indicators/tactics
+Lists tactics.
+
+
+GET
+/api/v1/indicators/techniques
+Lists techniques.
+
+CLass: Operator Preferences
+
+
+DELETE
+/api/v1/operator-preferences
+Deletes all operator preferences for this operator.
+
+
+GET
+/api/v1/operator-preferences
+Returns all preferences set for this operator.
+
+
+POST
+/api/v1/operator-preferences
+Upserts an allowed operator preference.
+
+
+DELETE
+/api/v1/operator-preferences/{key}
+Delete an operator preference.
+
+
+GET
+/api/v1/operator-preferences/{key}
+Gets a preference if it is set for this operator.
+
+Class: Permissions
+
+
+GET
+/api/v1/permissions
+Returns a list of permissions grouped by category
+
+
+Schemas

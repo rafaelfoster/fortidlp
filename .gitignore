@@ -25,3 +25,7 @@ test.py
 *.pyc
 TO-DO.md
 *.log
+
+node_modules/
+!test/
+!test/surface.test.mjs

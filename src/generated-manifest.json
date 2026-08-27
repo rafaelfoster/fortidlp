@@ -1,0 +1,6961 @@
+{
+  "generatedFrom": [
+    "fortidlp/fortidlp.py",
+    "fortidlp/__init__.py",
+    "fortidlp/access_tokens.py",
+    "fortidlp/action_events.py",
+    "fortidlp/admin.py",
+    "fortidlp/agent_actions.py",
+    "fortidlp/agent_configs.py",
+    "fortidlp/agent_enrollment.py",
+    "fortidlp/agent_groups.py",
+    "fortidlp/audit_logs.py",
+    "fortidlp/auth.py",
+    "fortidlp/authentication.py",
+    "fortidlp/cases.py",
+    "fortidlp/classifications.py",
+    "fortidlp/connector.py",
+    "fortidlp/dashboard_service.py",
+    "fortidlp/drive_labels_scheduled_sync.py",
+    "fortidlp/emails.py",
+    "fortidlp/entities_search.py",
+    "fortidlp/entra_id.py",
+    "fortidlp/file_shadow.py",
+    "fortidlp/global_operators.py",
+    "fortidlp/google.py",
+    "fortidlp/google_directory.py",
+    "fortidlp/incidents.py",
+    "fortidlp/labels.py",
+    "fortidlp/ldap.py",
+    "fortidlp/locations.py",
+    "fortidlp/microsoft.py",
+    "fortidlp/ml.py",
+    "fortidlp/operators.py",
+    "fortidlp/outlook.py",
+    "fortidlp/passphrase.py",
+    "fortidlp/perspectives.py",
+    "fortidlp/policies.py",
+    "fortidlp/quota.py",
+    "fortidlp/roles.py",
+    "fortidlp/saas_applications.py",
+    "fortidlp/saml.py",
+    "fortidlp/saved_queries.py",
+    "fortidlp/scoped_investigations.py",
+    "fortidlp/search.py",
+    "fortidlp/sequence_detection.py",
+    "fortidlp/siem.py"
+  ],
+  "classes": {
+    "Audit": {
+      "get_audit_logs": {
+        "params": [
+          "filter",
+          "start_time",
+          "end_time",
+          "operation_types",
+          "results_per_page",
+          "sort_order",
+          "sort",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v1/audit/search"
+      },
+      "clear_audit_logs": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/audit"
+      },
+      "export_audit_logs": {
+        "params": [
+          "filter",
+          "start_time",
+          "end_time",
+          "operation_types",
+          "signed",
+          "file_format",
+          "download_folder"
+        ],
+        "method": "POST",
+        "url": "/api/v1/audit/export"
+      },
+      "get_audit_public_key": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/audit/key"
+      },
+      "verify_audit_export": {
+        "params": [
+          "checksum_sha256",
+          "signature_jws"
+        ],
+        "method": "POST",
+        "url": "/api/v1/audit/verify"
+      }
+    },
+    "Cases": {
+      "list_cases": {
+        "params": [
+          "content_event_uri",
+          "content_operated_by",
+          "created_by",
+          "entries"
+        ],
+        "method": "GET",
+        "url": "/api/v1/cases"
+      },
+      "get_case": {
+        "params": [
+          "case_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/cases/{case_id}"
+      },
+      "create_case": {
+        "params": [
+          "name",
+          "description"
+        ],
+        "method": "POST",
+        "url": "/api/v1/cases"
+      },
+      "update_case": {
+        "params": [
+          "case_id",
+          "name",
+          "description"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/cases/{case_id}"
+      },
+      "delete_case": {
+        "params": [
+          "case_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/cases/{case_id}"
+      },
+      "assign_case": {
+        "params": [
+          "case_id",
+          "operator_uri"
+        ],
+        "method": "POST",
+        "url": "/api/v1/cases/{case_id}/assign"
+      },
+      "unassign_case": {
+        "params": [
+          "case_id",
+          "operator_uri"
+        ],
+        "method": "POST",
+        "url": "/api/v1/cases/{case_id}/unassign"
+      },
+      "get_case_content": {
+        "params": [
+          "case_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/cases/{case_id}/content"
+      },
+      "add_case_content": {
+        "params": [
+          "case_id",
+          "content_uuid"
+        ],
+        "method": "POST",
+        "url": "/api/v1/cases/{case_id}/content"
+      },
+      "update_case_content": {
+        "params": [
+          "case_id",
+          "content_uuid",
+          "new_content_uuid"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/cases/{case_id}/content/{content_uuid}"
+      },
+      "delete_case_content": {
+        "params": [
+          "case_id",
+          "content_uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/cases/{case_id}/content/{content_uuid}"
+      },
+      "download_case_content": {
+        "params": [
+          "case_id",
+          "filename",
+          "file_format",
+          "download_folder"
+        ],
+        "method": "GET",
+        "url": "/api/v1/cases/{case_id}/content/{filename}"
+      },
+      "add_case_image": {
+        "params": [
+          "case_id",
+          "image_content",
+          "content_type"
+        ],
+        "method": "POST",
+        "url": "/api/v1/cases/{case_id}/image"
+      },
+      "case_analysis_credit_allocation": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/cases/analysis/credit-allocation"
+      },
+      "case_analysis": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/cases/id/analysis"
+      },
+      "case_analysis_history": {
+        "params": [
+          "id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/cases/{id}/analysis/history"
+      },
+      "get_cases": {
+        "params": [
+          "content_event_uri",
+          "content_operated_by",
+          "created_by"
+        ],
+        "method": "GET",
+        "url": "/api/v1/cases"
+      },
+      "get_case_by_id": {
+        "params": [
+          "case_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/cases/{case_id}"
+      },
+      "get_case_content_image": {
+        "params": [
+          "case_id",
+          "filename"
+        ],
+        "method": "GET",
+        "url": "/api/v1/cases/{case_id}/content/{filename}"
+      }
+    },
+    "Operators": {
+      "list_operators": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/operators"
+      },
+      "get_operator": {
+        "params": [
+          "operator_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/operators/{operator_id}"
+      },
+      "create_operator": {
+        "params": [
+          "username",
+          "name",
+          "email",
+          "company",
+          "password",
+          "role",
+          "link_expiration",
+          "password_reset_on_login",
+          "pseudonymized"
+        ],
+        "method": "POST",
+        "url": "/api/v1/operators"
+      },
+      "update_operator": {
+        "params": [
+          "operator_id",
+          "username",
+          "name",
+          "email",
+          "company",
+          "roles"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/operators/{operator_id}"
+      },
+      "delete_operator": {
+        "params": [
+          "operator_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/operators/{operator_id}"
+      },
+      "reset_operator_mfa": {
+        "params": [
+          "operator_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/operators/{operator_id}/mfa"
+      },
+      "invalidate_operator_passphrase": {
+        "params": [
+          "operator_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/operators/{operator_id}/passphrase"
+      },
+      "generate_passphrase_reset_link": {
+        "params": [
+          "operator_id",
+          "expiry_duration"
+        ],
+        "method": "POST",
+        "url": "/api/v1/operators/{operator_id}/passphrase/reset-link"
+      },
+      "require_passphrase_reset_on_next_login": {
+        "params": [
+          "operator_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/operators/{operator_id}/passphrase/reset-next-login"
+      },
+      "list_authentication_logs": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/authentication-log"
+      },
+      "get_tenant_region": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/tenant-region"
+      },
+      "get_authentication_log": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/authentication-log"
+      },
+      "get_operators": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/operators"
+      },
+      "add_operator": {
+        "params": [
+          "username",
+          "name",
+          "email",
+          "company",
+          "password",
+          "role",
+          "link_expiration",
+          "password_reset_on_login"
+        ],
+        "method": "POST",
+        "url": "/api/v1/operators"
+      },
+      "reset_mfa_authentication": {
+        "params": [
+          "operator_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/operators/{operator_id}/mfa"
+      }
+    },
+    "Users": {
+      "get_users": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/users"
+      },
+      "create_user": {
+        "params": [
+          "address_home",
+          "address_office",
+          "department",
+          "description",
+          "directory_labels",
+          "name",
+          "email",
+          "image_content",
+          "juid",
+          "manager",
+          "manager_unique_id",
+          "phone_number_mobile",
+          "phone_number_office",
+          "sync_invocation_id",
+          "sync_source",
+          "title",
+          "unique_data",
+          "unique_id",
+          "user_uri"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/users"
+      },
+      "create_users_bulk": {
+        "params": [
+          "users"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/users/bulk"
+      },
+      "import_users": {
+        "params": [
+          "blob"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/users/import"
+      },
+      "restore_user": {
+        "params": [
+          "juid",
+          "unique_data"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/users/restore"
+      },
+      "delete_user": {
+        "params": [
+          "user_uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/admin/users/{user_uuid}"
+      },
+      "get_user_labels": {
+        "params": [
+          "user_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/admin/users/{user_id}/labels"
+      },
+      "add_user_photo": {
+        "params": [
+          "user_id",
+          "blob"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/users/{user_id}/photo"
+      },
+      "update_user_uris": {
+        "params": [
+          "user_id",
+          "add",
+          "remove"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/admin/users/{user_id}/useruris"
+      },
+      "assign_labels": {
+        "params": [
+          "filter",
+          "labels"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/labels/add"
+      },
+      "unassign_labels": {
+        "params": [
+          "filter",
+          "labels"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/labels/remove"
+      },
+      "assign_labels_admin": {
+        "params": [
+          "user_ids",
+          "label_ids"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/admin/users/labels/add"
+      },
+      "unassign_labels_admin": {
+        "params": [
+          "user_ids",
+          "label_ids"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/admin/users/labels/remove"
+      },
+      "search_users": {
+        "params": [
+          "filter",
+          "include_agents",
+          "include_labels",
+          "results_per_page",
+          "sort_order",
+          "sort",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/search"
+      },
+      "get_user": {
+        "params": [
+          "user_uuid",
+          "include_labels",
+          "include_agents"
+        ],
+        "method": "GET",
+        "url": "/api/v2/users/{user_uuid}"
+      },
+      "aggregate_users": {
+        "params": [
+          "aggregations",
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "sort",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/aggregate"
+      },
+      "get_user_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/users/terms"
+      },
+      "get_user_archive_config": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/users/archive/config"
+      },
+      "update_user_archive_config": {
+        "params": [
+          "inactive_archive_enabled",
+          "inactive_archive_threshold",
+          "archive_pending_enrollment_enabled",
+          "archived_pending_enrollment_threshold"
+        ],
+        "method": "PUT",
+        "url": "/api/v2/users/archive/config"
+      },
+      "change_user_state": {
+        "params": [
+          "new_state",
+          "filter",
+          "reason"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/state"
+      },
+      "get_user_agents": {
+        "params": [
+          "user_uuid",
+          "filter",
+          "include_actions",
+          "include_health",
+          "include_labels",
+          "include_licensed",
+          "include_users",
+          "results_per_page",
+          "sort_order",
+          "sort",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/{user_uuid}/agents/search"
+      },
+      "get_user_photo": {
+        "params": [
+          "user_uuid",
+          "file_format",
+          "download_folder"
+        ],
+        "method": "GET",
+        "url": "/api/v2/users/{user_uuid}/photo"
+      },
+      "get_user_uris_v2": {
+        "params": [
+          "user_uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v2/users/{user_uuid}/useruri"
+      },
+      "add_user_uri": {
+        "params": [
+          "user_uuid",
+          "uris"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/{user_uuid}/useruri/add"
+      },
+      "remove_user_uri": {
+        "params": [
+          "user_uuid",
+          "uris"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/{user_uuid}/useruri/remove"
+      },
+      "bulk_assign_user_uris": {
+        "params": [
+          "mappings"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/bulk/useruri"
+      },
+      "export_users_csv": {
+        "params": [
+          "fields",
+          "filter",
+          "header",
+          "download_folder"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/export/csv"
+      },
+      "export_users_xlsx": {
+        "params": [
+          "fields",
+          "filter",
+          "header",
+          "download_folder"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/export/xlsx"
+      },
+      "get_exportable_user_fields": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/users/export/fields"
+      },
+      "export_user_uris_csv": {
+        "params": [
+          "filter",
+          "header",
+          "include_juid",
+          "download_folder"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/useruri/export/csv"
+      }
+    },
+    "Policies": {
+      "create_policies_groups": {
+        "params": [
+          "description",
+          "exclude_labels",
+          "include_labels",
+          "match",
+          "name",
+          "enabled",
+          "exclude_match"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/groups"
+      },
+      "list_policies_groups": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/policies/groups"
+      },
+      "get_policy_group": {
+        "params": [
+          "group_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/groups/{group_id}"
+      },
+      "update_policy_group": {
+        "params": [
+          "group_id"
+        ],
+        "method": "UPDATE",
+        "url": "/api/v1/policies/groups/{group_id}"
+      },
+      "replace_policy_group": {
+        "params": [
+          "group_id"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/policies/groups/{group_id}"
+      },
+      "delete_policy_group": {
+        "params": [
+          "group_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/policies/groups/{group_id}"
+      },
+      "clone_policy_group": {
+        "params": [
+          "group_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/groups/{group_id}/clone"
+      },
+      "publish_policy_group": {
+        "params": [
+          "group_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/groups/{group_id}/publish"
+      },
+      "publish_policy_groups": {
+        "params": [
+          "group_ids"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/groups/publish"
+      },
+      "test_policies_groups": {
+        "params": [
+          "label_ids"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/groups/test"
+      },
+      "assign_policy_group_label": {
+        "params": [
+          "group_id",
+          "label_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/groups/{group_id}/labels/{label_id}"
+      },
+      "unassign_policy_group_label": {
+        "params": [
+          "group_id",
+          "label_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/policies/groups/{group_id}/labels/{label_id}"
+      },
+      "get_policy_group_labels": {
+        "params": [
+          "group_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/groups/{group_id}/labels"
+      },
+      "assign_policy_group_exclude_label": {
+        "params": [
+          "group_id",
+          "label_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/groups/{group_id}/exclude-labels/{label_id}"
+      },
+      "unassign_policy_group_exclude_label": {
+        "params": [
+          "group_id",
+          "label_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/policies/groups/{group_id}/exclude-labels/{label_id}"
+      },
+      "create_policy": {
+        "params": [
+          "group_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/groups/{group_id}/policies"
+      },
+      "get_policy": {
+        "params": [
+          "group_id",
+          "policy_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/groups/{group_id}/policies/{policy_id}"
+      },
+      "update_policy": {
+        "params": [
+          "group_id",
+          "policy_id"
+        ],
+        "method": "UPDATE",
+        "url": "/api/v1/policies/groups/{group_id}/policies/{policy_id}"
+      },
+      "replace_policy": {
+        "params": [
+          "group_id",
+          "policy_id"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/policies/groups/{group_id}/policies/{policy_id}"
+      },
+      "delete_policy": {
+        "params": [
+          "group_id",
+          "policy_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/policies/groups/{group_id}/policies/{policy_id}"
+      },
+      "get_policy_defaults": {
+        "params": [
+          "group_id",
+          "policy_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/groups/{group_id}/policies/{policy_id}/defaults"
+      },
+      "assign_policy_exclude_label": {
+        "params": [
+          "group_id",
+          "policy_id",
+          "label_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/groups/{group_id}/policies/{policy_id}/exclude-labels/{label_id}"
+      },
+      "unassign_policy_exclude_label": {
+        "params": [
+          "group_id",
+          "policy_id",
+          "label_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/policies/groups/{group_id}/policies/{policy_id}/exclude-labels/{label_id}"
+      },
+      "fetch_policies": {
+        "params": [
+          "group_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/fetch"
+      },
+      "search_policies": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/search"
+      },
+      "get_policy_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/policies/terms"
+      },
+      "test_policies": {
+        "params": [
+          "label_ids"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/test"
+      },
+      "export_policy_groups": {
+        "params": [
+          "group_ids",
+          "include_data_objects",
+          "include_labels"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/export"
+      },
+      "list_policy_group_templates": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/policies/group-templates"
+      },
+      "list_policy_group_template_templates": {
+        "params": [
+          "template_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/group-templates/{template_id}/templates"
+      },
+      "list_policy_packs": {
+        "params": [
+          "pack_type"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/packs"
+      },
+      "get_policy_pack": {
+        "params": [
+          "pack_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/packs/{pack_id}"
+      },
+      "delete_policy_pack": {
+        "params": [
+          "pack_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/policies/packs/{pack_id}"
+      },
+      "list_policy_pack_templates": {
+        "params": [
+          "pack_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/packs/{pack_id}/templates"
+      },
+      "get_policy_pack_template": {
+        "params": [
+          "pack_id",
+          "template_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/packs/{pack_id}/templates/{template_id}"
+      },
+      "upload_policy_packs": {
+        "params": [
+          "blob"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/packs/upload"
+      },
+      "list_policies_data": {
+        "params": [
+          "data_type"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/data"
+      },
+      "create_policy_data": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/policies/data"
+      },
+      "upload_policy_data": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/policies/data/upload"
+      },
+      "get_policy_data": {
+        "params": [
+          "policy_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/data/{policy_id}"
+      },
+      "update_policy_data": {
+        "params": [
+          "policy_id"
+        ],
+        "method": "UPDATE",
+        "url": "/api/v1/policies/data/{policy_id}"
+      },
+      "delete_policy_asset": {
+        "params": [
+          "asset_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/policies/data/{asset_id}"
+      },
+      "download_policy_data": {
+        "params": [
+          "policy_id",
+          "file_format",
+          "download_folder"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/data/{policy_id}/download"
+      },
+      "import_policy_groups": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/policies/import"
+      },
+      "get_all_data_objects": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/policies/data"
+      },
+      "create_data_object": {
+        "params": [
+          "ref",
+          "name",
+          "description",
+          "tags"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/data"
+      },
+      "upload_data_object_blob": {
+        "params": [
+          "file_content",
+          "content_type"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/data/upload"
+      },
+      "delete_data_object_by_id": {
+        "params": [
+          "data_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/policies/data/{data_id}"
+      },
+      "get_data_object_by_id": {
+        "params": [
+          "data_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/data/{data_id}"
+      },
+      "update_data_object": {
+        "params": [
+          "data_id",
+          "name",
+          "description",
+          "tags"
+        ],
+        "method": "PATCH",
+        "url": "/api/v1/policies/data/{data_id}"
+      },
+      "download_data_object": {
+        "params": [
+          "data_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/data/{data_id}/download"
+      },
+      "fetch_all_group_templates": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/policies/group-templates"
+      },
+      "fetch_policy_templates_by_group_template_id": {
+        "params": [
+          "group_template_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/group-templates/{group_template_id}/templates"
+      },
+      "fetch_all_policy_groups": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/policies/groups"
+      },
+      "create_policy_group": {
+        "params": [
+          "name",
+          "description",
+          "enabled",
+          "match",
+          "exclude_match",
+          "include_labels",
+          "exclude_labels"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/groups"
+      },
+      "test_policy_groups": {
+        "params": [
+          "label_uuids"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/groups/test"
+      },
+      "create_policy_within_group": {
+        "params": [
+          "group_id",
+          "name",
+          "description",
+          "enabled",
+          "parameter_values",
+          "clustering_rules"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/groups/{group_id}/policies"
+      },
+      "fetch_policy": {
+        "params": [
+          "group_id",
+          "policy_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/groups/{group_id}/policies/{policy_id}"
+      },
+      "update_partial_policy": {
+        "params": [
+          "group_id",
+          "policy_id",
+          "name",
+          "description",
+          "enabled",
+          "parameter_values",
+          "clustering_rules"
+        ],
+        "method": "PATCH",
+        "url": "/api/v1/policies/groups/{group_id}/policies/{policy_id}"
+      },
+      "update_complete_policy": {
+        "params": [
+          "group_id",
+          "policy_id",
+          "name",
+          "description",
+          "enabled",
+          "parameter_values",
+          "clustering_rules"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/policies/groups/{group_id}/policies/{policy_id}"
+      },
+      "update_partial_policy_group": {
+        "params": [
+          "group_id",
+          "name",
+          "description",
+          "enabled",
+          "match",
+          "exclude_match",
+          "include_labels",
+          "exclude_labels"
+        ],
+        "method": "PATCH",
+        "url": "/api/v1/policies/groups/{group_id}"
+      },
+      "update_complete_policy_group": {
+        "params": [
+          "group_id",
+          "name",
+          "description",
+          "enabled",
+          "match",
+          "exclude_match",
+          "include_labels",
+          "exclude_labels"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/policies/groups/{group_id}"
+      },
+      "unassign_exclude_label_from_agent_policy_group": {
+        "params": [
+          "group_id",
+          "label_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/policies/groups/{group_id}/exclude-labels/{label_id}"
+      },
+      "assign_exclude_label_to_agent_policy_group": {
+        "params": [
+          "group_id",
+          "label_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/groups/{group_id}/exclude-labels/{label_id}"
+      },
+      "unassign_label_from_agent_policy_group": {
+        "params": [
+          "group_id",
+          "label_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/policies/groups/{group_id}/labels/{label_id}"
+      },
+      "assign_label_to_agent_policy_group": {
+        "params": [
+          "group_id",
+          "label_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/groups/{group_id}/labels/{label_id}"
+      },
+      "import_agent_policy_groups": {
+        "params": [
+          "file_content",
+          "content_type"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/import"
+      },
+      "fetch_all_policy_packs": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/policies/packs"
+      },
+      "upload_all_policy_packs": {
+        "params": [
+          "file_content",
+          "content_type"
+        ],
+        "method": "POST",
+        "url": "/api/v1/policies/packs/upload"
+      },
+      "fetch_policy_pack": {
+        "params": [
+          "pack_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/packs/{pack_id}"
+      },
+      "fetch_policy_templates_by_policy_pack_id": {
+        "params": [
+          "pack_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/packs/{pack_id}/templates"
+      },
+      "fetch_policy_template": {
+        "params": [
+          "pack_id",
+          "template_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/packs/{pack_id}/templates/{template_id}"
+      }
+    },
+    "PoliciesData": {
+      "list_policies_data": {
+        "params": [
+          "filter",
+          "results_per_page",
+          "data_type"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/data"
+      },
+      "create_policy_data": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/policies/data"
+      },
+      "upload_policy_data": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/policies/data/upload"
+      },
+      "get_policy_data": {
+        "params": [
+          "policy_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/data/{policy_id}"
+      },
+      "update_policy_data": {
+        "params": [
+          "policy_id"
+        ],
+        "method": "UPDATE",
+        "url": "/api/v1/policies/data/{policy_id}"
+      },
+      "delete_policy_data": {
+        "params": [
+          "policy_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/policies/data/{policy_id}"
+      },
+      "download_policy_data": {
+        "params": [
+          "policy_id",
+          "file_format",
+          "download_folder"
+        ],
+        "method": "GET",
+        "url": "/api/v1/policies/data/{policy_id}/download"
+      }
+    },
+    "Incidents": {
+      "search_incidents": {
+        "params": [
+          "filter",
+          "results_per_page",
+          "sort_order"
+        ],
+        "method": "POST",
+        "url": "/api/v2/incidents/search"
+      },
+      "get_incident": {
+        "params": [
+          "incident_id",
+          "include_labels",
+          "include_users",
+          "include_agents",
+          "include_cluster_data"
+        ],
+        "method": "GET",
+        "url": "/api/v2/incidents/{incident_id}"
+      },
+      "aggregate_incidents": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/incidents/aggregate"
+      },
+      "get_incident_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/incidents/terms"
+      },
+      "count_incident_agents": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/incidents/agents/count"
+      },
+      "count_incident_users": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/incidents/users/count"
+      },
+      "get_bounded_rule_entity_count": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/incidents/bounded-rule-entity-count"
+      },
+      "update_status": {
+        "params": [
+          "status",
+          "all",
+          "filter",
+          "reason"
+        ],
+        "method": "POST",
+        "url": "/api/v2/incidents/status"
+      },
+      "get_incident_agents": {
+        "params": [
+          "incident_id",
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "sort",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/incidents/{incident_id}/agents/search"
+      },
+      "get_incident_users": {
+        "params": [
+          "incident_id",
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "sort",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/incidents/{incident_id}/users/search"
+      },
+      "get_incident_labels": {
+        "params": [
+          "incident_id",
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "sort",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/incidents/{incident_id}/labels/search"
+      },
+      "count_agents_in_incidents": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/incidents/agents/count"
+      },
+      "set_incident_status": {
+        "params": [
+          "status",
+          "all",
+          "filter",
+          "reason"
+        ],
+        "method": "POST",
+        "url": "/api/v2/incidents/status"
+      },
+      "count_users_in_incidents": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/incidents/users/count"
+      },
+      "get_single_incident": {
+        "params": [
+          "incident_id"
+        ],
+        "method": "GET",
+        "url": "/api/v2/incidents/{incident_id}"
+      },
+      "search_incident_agents": {
+        "params": [
+          "incident_id",
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/incidents/{incident_id}/agents/search"
+      },
+      "search_incident_labels": {
+        "params": [
+          "incident_id",
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/incidents/{incident_id}/labels/search"
+      },
+      "search_incident_users": {
+        "params": [
+          "incident_id",
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/incidents/{incident_id}/users/search"
+      }
+    },
+    "SaaS": {
+      "search_applications": {
+        "params": [
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "sort",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/search"
+      },
+      "aggregate_applications": {
+        "params": [
+          "aggregations",
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "sort",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/aggregate"
+      },
+      "get_application": {
+        "params": [
+          "application_id",
+          "include_login_counts"
+        ],
+        "method": "GET",
+        "url": "/api/v2/saas-applications/{application_id}"
+      },
+      "get_application_icon": {
+        "params": [
+          "application_id",
+          "file_format",
+          "download_folder"
+        ],
+        "method": "GET",
+        "url": "/api/v2/saas-applications/{application_id}/icon"
+      },
+      "get_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/saas-applications/terms"
+      },
+      "get_template_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/saas-applications/templates/terms"
+      },
+      "get_categories": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/saas-applications/categories"
+      },
+      "search_templates": {
+        "params": [
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "sort",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/templates"
+      },
+      "export_csv": {
+        "params": [
+          "fields",
+          "filter",
+          "header",
+          "download_folder"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/export/csv"
+      },
+      "export_xlsx": {
+        "params": [
+          "fields",
+          "filter",
+          "header",
+          "download_folder"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/export/xlsx"
+      },
+      "get_exportable_fields": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/saas-applications/export/fields"
+      },
+      "get_config": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/saas-applications/config"
+      },
+      "update_config": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/config"
+      },
+      "create_applications": {
+        "params": [
+          "application_ids"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/create"
+      },
+      "create_custom_application": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/custom/create"
+      },
+      "test_custom_application": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/custom/test"
+      },
+      "update_custom_application": {
+        "params": [
+          "application_id"
+        ],
+        "method": "UPDATE",
+        "url": "/api/v2/saas-applications/custom/{application_id}"
+      },
+      "upload_custom_application_icon": {
+        "params": [
+          "application_id",
+          "blob"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/custom/{application_id}/icon"
+      },
+      "delete_custom_application_icon": {
+        "params": [
+          "application_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v2/saas-applications/custom/{application_id}/icon"
+      },
+      "set_scores": {
+        "params": [
+          "score",
+          "all",
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/scores"
+      },
+      "reset_scores": {
+        "params": [
+          "all",
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/scores/reset"
+      },
+      "set_verdict": {
+        "params": [
+          "verdict",
+          "all",
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/verdict"
+      },
+      "allow_domainless_login": {
+        "params": [
+          "allow_domainless_login",
+          "all",
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/allow_domainless_login"
+      },
+      "change_state": {
+        "params": [
+          "state",
+          "reason",
+          "all",
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/state"
+      }
+    },
+    "Agents": {
+      "get_agents": {
+        "params": [
+          "filter",
+          "include_actions",
+          "include_health",
+          "include_labels",
+          "include_licensed",
+          "include_users",
+          "results_per_page",
+          "sort_order",
+          "sort",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/search"
+      },
+      "get_agent": {
+        "params": [
+          "agent_uuid",
+          "include_labels",
+          "include_users",
+          "include_actions",
+          "include_health",
+          "include_licensed"
+        ],
+        "method": "GET",
+        "url": "/api/v2/agents/{agent_uuid}"
+      },
+      "aggregate_agents": {
+        "params": [
+          "aggregations",
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "sort",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/aggregate"
+      },
+      "get_agent_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/agents/terms"
+      },
+      "get_enrolled_count": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/agents/enrolled-count"
+      },
+      "update_status": {
+        "params": [
+          "filter",
+          "new_state",
+          "reason"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/state"
+      },
+      "revoke_agents": {
+        "params": [
+          "filter",
+          "reason"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/revoke"
+      },
+      "export_agents_csv": {
+        "params": [
+          "fields",
+          "filter",
+          "header",
+          "download_folder"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/export/csv"
+      },
+      "export_agents_xlsx": {
+        "params": [
+          "fields",
+          "filter",
+          "header",
+          "download_folder"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/export/xlsx"
+      },
+      "get_exportable_agent_fields": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/agents/export/fields"
+      },
+      "get_agent_archive_config": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/agents/archive/config"
+      },
+      "update_agent_archive_config": {
+        "params": [
+          "inactive_archive_enabled",
+          "inactive_archive_threshold",
+          "hardware_id_archive_enabled"
+        ],
+        "method": "PUT",
+        "url": "/api/v2/agents/archive/config"
+      },
+      "get_agent_components": {
+        "params": [
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "sort",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/components"
+      },
+      "get_agent_component_faults": {
+        "params": [
+          "include_suppressed",
+          "include_archived",
+          "results_per_page",
+          "sort_order",
+          "sort",
+          "cursor"
+        ],
+        "method": "GET",
+        "url": "/api/v2/agents/components/faults"
+      },
+      "get_agent_component_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/agents/components/terms"
+      },
+      "suppress_components": {
+        "params": [
+          "component_ids",
+          "filter",
+          "all"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/components/suppress"
+      },
+      "unsuppress_components": {
+        "params": [
+          "component_ids",
+          "filter",
+          "all"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/components/unsuppress"
+      },
+      "get_agent_components_by_agent": {
+        "params": [
+          "agent_uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v2/agents/{agent_uuid}/components"
+      },
+      "suppress_components_by_agent": {
+        "params": [
+          "agent_uuid",
+          "component_ids"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/{agent_uuid}/components/suppress"
+      },
+      "unsuppress_components_by_agent": {
+        "params": [
+          "agent_uuid",
+          "component_ids"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/{agent_uuid}/components/unsuppress"
+      },
+      "get_agent_users": {
+        "params": [
+          "agent_uuid",
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "sort",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/{agent_uuid}/users/search"
+      },
+      "delete_archived_agents": {
+        "params": [
+          "agent_ids",
+          "archived_days",
+          "inactive_days",
+          "never_reported",
+          "revoked_days"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/admin/agents/archived/delete"
+      },
+      "assign_labels": {
+        "params": [
+          "agent_ids",
+          "label_ids"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/admin/agents/labels/add"
+      },
+      "unassign_labels": {
+        "params": [
+          "agent_ids",
+          "label_ids"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/admin/agents/labels/remove"
+      },
+      "add_labels": {
+        "params": [
+          "filter",
+          "labels"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/labels/add"
+      },
+      "remove_labels": {
+        "params": [
+          "filter",
+          "labels"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/labels/remove"
+      },
+      "get_agent_updates": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/admin/agents/updates"
+      },
+      "download_agent_binary": {
+        "params": [
+          "version",
+          "operating_system",
+          "variant",
+          "file_format",
+          "download_folder"
+        ],
+        "method": "GET",
+        "url": "/api/v1/admin/agents/binaries"
+      },
+      "create_agent_enrollment_bundle": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/admin/agents/enroll"
+      },
+      "get_agent_crashes": {
+        "params": [
+          "agent_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/admin/agents/{agent_id}/crashes"
+      },
+      "delete_agent_crashes": {
+        "params": [
+          "agent_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/admin/agents/{agent_id}/crashes"
+      },
+      "download_agent_crash": {
+        "params": [
+          "agent_id",
+          "crash_id",
+          "file_format",
+          "download_folder"
+        ],
+        "method": "GET",
+        "url": "/api/v1/admin/agents/{agent_id}/crashes/{crash_id}"
+      },
+      "delete_agent_crash": {
+        "params": [
+          "agent_id",
+          "crash_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/admin/agents/{agent_id}/crashes/{crash_id}"
+      },
+      "get_agent_labels": {
+        "params": [
+          "agent_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/admin/agents/{agent_id}/labels"
+      },
+      "get_agent_classifications": {
+        "params": [
+          "agent_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/admin/agents/{agent_id}/classifications"
+      },
+      "assign_agent_classification": {
+        "params": [
+          "agent_id",
+          "classification_id",
+          "reason"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/agents/{agent_id}/classifications/{classification_id}"
+      },
+      "remove_agent_classification": {
+        "params": [
+          "agent_id",
+          "classification_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/admin/agents/{agent_id}/classifications/{classification_id}"
+      },
+      "exclude_agent_classification": {
+        "params": [
+          "agent_id",
+          "classification_id",
+          "reason"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/agents/{agent_id}/classifications/{classification_id}/exclude"
+      }
+    },
+    "AgentConfigs": {
+      "get_agent_configs": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/agent-configs"
+      },
+      "create_agent_config": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/agent-configs"
+      },
+      "get_agent_config": {
+        "params": [
+          "config_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/agent-configs/{config_id}"
+      },
+      "update_agent_config": {
+        "params": [
+          "config_id"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/agent-configs/{config_id}"
+      },
+      "delete_agent_config": {
+        "params": [
+          "config_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/agent-configs/{config_id}"
+      },
+      "export_agent_configs": {
+        "params": [
+          "config_ids"
+        ],
+        "method": "POST",
+        "url": "/api/v1/agent-configs/export"
+      },
+      "import_agent_configs": {
+        "params": [
+          "configs_file_content",
+          "content_type"
+        ],
+        "method": "POST",
+        "url": "/api/v1/agent-configs/import"
+      },
+      "test_agent_configs": {
+        "params": [
+          "label_uuids"
+        ],
+        "method": "POST",
+        "url": "/api/v1/agent-configs/test"
+      },
+      "get_agent_config_key": {
+        "params": [
+          "config_id",
+          "key"
+        ],
+        "method": "GET",
+        "url": "/api/v1/agent-configs/{config_id}/keys/{key}"
+      },
+      "set_agent_config_key": {
+        "params": [
+          "config_id",
+          "key",
+          "value"
+        ],
+        "method": "POST",
+        "url": "/api/v1/agent-configs/{config_id}/keys/{key}"
+      },
+      "delete_agent_config_key": {
+        "params": [
+          "config_id",
+          "key"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/agent-configs/{config_id}/keys/{key}"
+      },
+      "get_agent_config_labels": {
+        "params": [
+          "config_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/agent-configs/{config_id}/labels"
+      },
+      "assign_agent_config_labels": {
+        "params": [
+          "config_id",
+          "label_ids"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/agent-configs/{config_id}/labels"
+      },
+      "unassign_agent_config_labels": {
+        "params": [
+          "config_id",
+          "label_ids"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/agent-configs/{config_id}/labels"
+      },
+      "list_agent_configurations": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/agent-configs"
+      },
+      "create_agent_configuration": {
+        "params": [
+          "name",
+          "description",
+          "data"
+        ],
+        "method": "POST",
+        "url": "/api/v1/agent-configs"
+      },
+      "delete_agent_configuration": {
+        "params": [
+          "config_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/agent-configs/{config_id}"
+      },
+      "get_agent_configuration": {
+        "params": [
+          "config_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/agent-configs/{config_id}"
+      },
+      "update_agent_configuration": {
+        "params": [
+          "config_id",
+          "name",
+          "description",
+          "data"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/agent-configs/{config_id}"
+      },
+      "add_or_update_agent_config_key": {
+        "params": [
+          "config_id",
+          "key",
+          "value"
+        ],
+        "method": "POST",
+        "url": "/api/v1/agent-configs/{config_id}/keys/{key}"
+      },
+      "unassign_labels_from_agent_config": {
+        "params": [
+          "config_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/agent-configs/{config_id}/labels"
+      },
+      "get_labels_assigned_to_agent_config": {
+        "params": [
+          "config_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/agent-configs/{config_id}/labels"
+      },
+      "assign_labels_to_agent_config": {
+        "params": [
+          "config_id",
+          "label_ids"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/agent-configs/{config_id}/labels"
+      }
+    },
+    "AgentEnrollment": {
+      "get_bootstrap_token": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/enrollment/bootstrap-token"
+      },
+      "get_tokens": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/enrollment/tokens"
+      },
+      "create_token": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/enrollment/tokens"
+      },
+      "get_token": {
+        "params": [
+          "token_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/enrollment/tokens/{token_id}"
+      },
+      "update_token": {
+        "params": [
+          "token_id"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/enrollment/tokens/{token_id}"
+      },
+      "download_token_bundle": {
+        "params": [
+          "token_id",
+          "file_format",
+          "download_folder"
+        ],
+        "method": "GET",
+        "url": "/api/v1/enrollment/tokens/{token_id}/bundle"
+      },
+      "revoke_token": {
+        "params": [
+          "token_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/enrollment/tokens/{token_id}/revoke"
+      },
+      "get_agent_enrollment_tokens": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/enrollment/tokens"
+      },
+      "create_agent_enrollment_token": {
+        "params": [
+          "name",
+          "description"
+        ],
+        "method": "POST",
+        "url": "/api/v1/enrollment/tokens"
+      },
+      "get_agent_enrollment_token_by_id": {
+        "params": [
+          "token_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/enrollment/tokens/{token_id}"
+      },
+      "update_enroll_token_configuration": {
+        "params": [
+          "token_id",
+          "name",
+          "description"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/enrollment/tokens/{token_id}"
+      },
+      "download_enrollment_bundle": {
+        "params": [
+          "token_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/enrollment/tokens/{token_id}/bundle"
+      },
+      "revoke_enroll_token": {
+        "params": [
+          "token_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/enrollment/tokens/{token_id}/revoke"
+      }
+    },
+    "Labels": {
+      "create": {
+        "params": [
+          "name",
+          "description",
+          "category",
+          "anonymise",
+          "flagged"
+        ],
+        "method": "POST",
+        "url": "/api/v1/labels"
+      },
+      "get": {
+        "params": [
+          "id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/labels/{id}"
+      },
+      "update": {
+        "params": [
+          "id",
+          "name",
+          "description",
+          "category",
+          "anonymise",
+          "flagged"
+        ],
+        "method": "UPDATE",
+        "url": "/api/v1/labels/{id}"
+      },
+      "delete": {
+        "params": [
+          "id",
+          "force"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/labels/{id}"
+      },
+      "get_labels": {
+        "params": [
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "sort",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v1/labels/search"
+      },
+      "get_label_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/labels/terms"
+      },
+      "create_label": {
+        "params": [
+          "name",
+          "description",
+          "category",
+          "anonymise",
+          "flagged"
+        ],
+        "method": "POST",
+        "url": "/api/v1/labels"
+      },
+      "search_labels": {
+        "params": [
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v1/labels/search"
+      },
+      "delete_label_by_id": {
+        "params": [
+          "label_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/labels/{label_id}"
+      },
+      "get_label_by_id": {
+        "params": [
+          "label_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/labels/{label_id}"
+      },
+      "update_label": {
+        "params": [
+          "label_id",
+          "name",
+          "description",
+          "category",
+          "anonymise",
+          "flagged"
+        ],
+        "method": "PATCH",
+        "url": "/api/v1/labels/{label_id}"
+      }
+    },
+    "AccessTokens": {
+      "get_access_tokens": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/access-tokens"
+      },
+      "create_access_token": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/access-tokens"
+      },
+      "get_access_token": {
+        "params": [
+          "jti"
+        ],
+        "method": "GET",
+        "url": "/api/v1/access-tokens/{jti}"
+      },
+      "revoke_access_token": {
+        "params": [
+          "jti"
+        ],
+        "method": "POST",
+        "url": "/api/v1/access-tokens/{jti}/revoke"
+      },
+      "list": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/access_tokens"
+      },
+      "create": {
+        "params": [
+          "data"
+        ],
+        "method": "POST",
+        "url": "/api/v1/access_tokens"
+      },
+      "get": {
+        "params": [
+          "token_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/access_tokens/{token_id}"
+      },
+      "delete": {
+        "params": [
+          "token_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/access_tokens/{token_id}"
+      }
+    },
+    "Admin": {
+      "delete_login_banner_info": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/admin/login/banner"
+      },
+      "get_login_banner_info": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/admin/login/banner"
+      },
+      "update_login_banner_info": {
+        "params": [],
+        "method": "PUT",
+        "url": "/api/v1/admin/login/banner"
+      },
+      "get_operator_sessions": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/admin/operator_sessions"
+      },
+      "revoke_operator_session": {
+        "params": [
+          "session_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/operator_sessions/{session_id}/revoke"
+      },
+      "get_version": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/admin/version"
+      },
+      "delete_archived_agents": {
+        "params": [
+          "agent_ids",
+          "archived_days",
+          "inactive_days",
+          "never_reported",
+          "revoked_days"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/agents/archived/delete"
+      },
+      "download_agent_binary": {
+        "params": [
+          "os_type",
+          "version"
+        ],
+        "method": "GET",
+        "url": "/api/v1/admin/agents/binaries?os_type={os_type}&version={version}"
+      },
+      "delete_all_agent_crash_reports": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/admin/agents/crashes"
+      },
+      "list_agent_crash_dumps": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/admin/agents/crashes"
+      },
+      "assign_labels_to_agents": {
+        "params": [
+          "agent_ids",
+          "label_ids"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/agents/labels/add"
+      },
+      "unassign_labels_from_agents": {
+        "params": [
+          "agent_ids",
+          "label_ids"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/agents/labels/remove"
+      },
+      "get_available_agent_upgrade_versions": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/admin/agents/updates"
+      },
+      "get_agent_classifications": {
+        "params": [
+          "agent_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/admin/agents/{agent_id}/classifications"
+      },
+      "remove_agent_classification": {
+        "params": [
+          "agent_id",
+          "classification_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/admin/agents/{agent_id}/classifications/{classification_id}"
+      },
+      "assign_classification_to_agent": {
+        "params": [
+          "agent_id",
+          "classification_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/agents/{agent_id}/classifications/{classification_id}"
+      },
+      "exclude_classification_from_agent": {
+        "params": [
+          "agent_id",
+          "classification_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/agents/{agent_id}/classifications/{classification_id}/exclude"
+      },
+      "delete_agent_crash_reports": {
+        "params": [
+          "agent_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/admin/agents/{agent_id}/crashes"
+      },
+      "list_agent_crash_events": {
+        "params": [
+          "agent_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/admin/agents/{agent_id}/crashes"
+      },
+      "download_agent_crash_report": {
+        "params": [
+          "agent_id",
+          "crash_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/admin/agents/{agent_id}/crashes/{crash_id}"
+      },
+      "get_agent_labels": {
+        "params": [
+          "agent_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/admin/agents/{agent_id}/labels"
+      },
+      "delete_login_banner_configuration": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/admin/login/banner"
+      },
+      "get_login_banner_configuration": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/admin/login/banner"
+      },
+      "update_login_banner_configuration": {
+        "params": [
+          "banner_text",
+          "enabled"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/admin/login/banner"
+      },
+      "list_operator_sessions": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/admin/operator_sessions"
+      },
+      "create_user": {
+        "params": [
+          "username",
+          "password",
+          "email",
+          "first_name",
+          "last_name",
+          "roles"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/users"
+      },
+      "bulk_create_users": {
+        "params": [
+          "users"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/users/bulk"
+      },
+      "import_users_from_csv": {
+        "params": [
+          "csv_file_content"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/users/import"
+      },
+      "assign_labels_to_users": {
+        "params": [
+          "user_ids",
+          "label_ids"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/admin/users/labels/add"
+      },
+      "unassign_labels_from_users": {
+        "params": [
+          "user_ids",
+          "label_ids"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/admin/users/labels/remove"
+      },
+      "restore_user": {
+        "params": [
+          "user_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/users/{user_id}/restore"
+      },
+      "get_user_labels": {
+        "params": [
+          "user_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/admin/users/{user_id}/labels"
+      },
+      "add_user_photo": {
+        "params": [
+          "user_id",
+          "photo_content",
+          "content_type"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/users/{user_id}/photo"
+      },
+      "update_user_uris": {
+        "params": [
+          "user_id",
+          "user_uris"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/admin/users/{user_id}/useruris"
+      },
+      "delete_user_pii": {
+        "params": [
+          "user_uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/admin/users/{user_uuid}"
+      },
+      "get_stack_version": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/admin/version"
+      }
+    },
+    "AgentActions": {
+      "post_action": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/actions"
+      },
+      "delete_active_actions": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/actions/active"
+      },
+      "post_active_actions": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/actions/active"
+      },
+      "get_available_actions": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/actions/available"
+      },
+      "post_available_actions": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/actions/available"
+      },
+      "delete_debug_bundle": {
+        "params": [
+          "agent_uuid",
+          "action_uuid",
+          "filename"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/actions/debug-bundles/{agent_uuid}/{action_uuid}/{filename}"
+      },
+      "get_debug_bundle": {
+        "params": [
+          "agent_uuid",
+          "action_uuid",
+          "filename"
+        ],
+        "method": "GET",
+        "url": "/api/v1/actions/debug-bundles/{agent_uuid}/{action_uuid}/{filename}"
+      },
+      "delete_performance_report": {
+        "params": [
+          "agent_uuid",
+          "action_uuid",
+          "filename"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/actions/performance-reports/{agent_uuid}/{action_uuid}/{filename}"
+      },
+      "get_performance_report": {
+        "params": [
+          "agent_uuid",
+          "action_uuid",
+          "filename"
+        ],
+        "method": "GET",
+        "url": "/api/v1/actions/performance-reports/{agent_uuid}/{action_uuid}/{filename}"
+      },
+      "delete_screenshot": {
+        "params": [
+          "agent_uuid",
+          "action_uuid",
+          "filename"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/actions/screenshots/{agent_uuid}/{action_uuid}/{filename}"
+      },
+      "get_screenshot": {
+        "params": [
+          "agent_uuid",
+          "action_uuid",
+          "filename"
+        ],
+        "method": "GET",
+        "url": "/api/v1/actions/screenshots/{agent_uuid}/{action_uuid}/{filename}"
+      },
+      "trigger_action": {
+        "params": [
+          "agent_ids",
+          "action_type",
+          "parameters"
+        ],
+        "method": "POST",
+        "url": "/api/v1/actions/trigger"
+      },
+      "get_in_flight_actions": {
+        "params": [
+          "agent_uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/actions/{agent_uuid}/in-flight"
+      },
+      "delete_action_content": {
+        "params": [
+          "agent_uuid",
+          "action_uuid",
+          "filename"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/actions/{agent_uuid}/{action_uuid}/{filename}"
+      },
+      "get_action_content": {
+        "params": [
+          "agent_uuid",
+          "action_uuid",
+          "filename"
+        ],
+        "method": "GET",
+        "url": "/api/v1/actions/{agent_uuid}/{action_uuid}/{filename}"
+      },
+      "request_action": {
+        "params": [
+          "agent_ids",
+          "action_type",
+          "parameters"
+        ],
+        "method": "POST",
+        "url": "/api/v1/actions"
+      },
+      "unset_active_actions": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/actions/active"
+      },
+      "query_active_actions": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v1/actions/active"
+      },
+      "list_available_action_types": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/actions/available"
+      },
+      "query_supported_action_types": {
+        "params": [
+          "agent_ids"
+        ],
+        "method": "POST",
+        "url": "/api/v1/actions/available"
+      },
+      "list_in_flight_actions": {
+        "params": [
+          "agent_uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/actions/{agent_uuid}/in-flight"
+      }
+    },
+    "AgentOfflineConfig": {
+      "get_agent_offline_config": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/agentoffline/config"
+      },
+      "update_agent_offline_config": {
+        "params": [],
+        "method": "PUT",
+        "url": "/api/v1/agentoffline/config"
+      }
+    },
+    "Box": {
+      "box_service_list_credentials": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/box/credentials"
+      },
+      "box_service_create_credentials": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/box/credentials"
+      },
+      "box_service_verify_credentials": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/box/credentials/verify"
+      },
+      "box_service_delete_credentials": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/box/credentials/{uuid}"
+      },
+      "box_service_get_credentials": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/box/credentials/{uuid}"
+      },
+      "box_service_update_credentials": {
+        "params": [
+          "uuid"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/box/credentials/{uuid}"
+      },
+      "box_service_verify_saved_credentials": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/box/credentials/{uuid}/verify"
+      },
+      "list_saas_box_subscriptions": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/box/drive"
+      },
+      "create_saas_box_subscription": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/box/drive"
+      },
+      "cancel_saas_box_subscription": {
+        "params": [
+          "id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/box/drive/{id}"
+      },
+      "get_saas_box_subscription": {
+        "params": [
+          "id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/box/drive/{id}"
+      },
+      "update_saas_box_subscription": {
+        "params": [
+          "id"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/box/drive/{id}"
+      }
+    },
+    "BoxDirectory": {
+      "get_box_directory_configs": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/box/directory/configs"
+      },
+      "add_box_directory_config": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/box/directory/configs"
+      },
+      "delete_box_directory_config": {
+        "params": [
+          "id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/box/directory/configs/{id}"
+      },
+      "get_box_directory_config": {
+        "params": [
+          "id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/box/directory/configs/{id}"
+      },
+      "update_box_directory_config": {
+        "params": [
+          "id"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/box/directory/configs/{id}"
+      },
+      "sync_box_directory": {
+        "params": [
+          "id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/box/directory/configs/{id}/sync"
+      },
+      "sync_box_directory_groups": {
+        "params": [
+          "id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/box/directory/configs/{id}/sync/groups"
+      },
+      "list_box_directory_groups": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/box/directory/groups"
+      }
+    },
+    "Classifications": {
+      "get_classifications": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/classifications"
+      },
+      "get_classification": {
+        "params": [
+          "id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/classifications/{id}"
+      },
+      "get_all_classifications": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/classifications"
+      },
+      "get_classification_by_id": {
+        "params": [
+          "classification_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/classifications/{classification_id}"
+      }
+    },
+    "CloudActions": {
+      "get_available_cloud_actions": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/cloud-actions/available"
+      },
+      "delete_cloud_message_platform_defaults": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/cloud-actions/messages/platform-defaults"
+      },
+      "get_cloud_message_platform_defaults": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/cloud-actions/messages/platform-defaults"
+      },
+      "update_cloud_message_platform_defaults": {
+        "params": [],
+        "method": "PUT",
+        "url": "/api/v1/cloud-actions/messages/platform-defaults"
+      }
+    },
+    "Dashboards": {
+      "get_dashboards": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/dashboards"
+      },
+      "create_dashboard": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/dashboards"
+      },
+      "get_widget_templates": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/dashboards/templates"
+      },
+      "delete_dashboard": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v2/dashboards/{uuid}"
+      },
+      "get_dashboard": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v2/dashboards/{uuid}"
+      },
+      "update_dashboard": {
+        "params": [
+          "uuid"
+        ],
+        "method": "PUT",
+        "url": "/api/v2/dashboards/{uuid}"
+      }
+    },
+    "DriveLabelsScheduledSync": {
+      "create_scheduled_sync_google_drive_labels": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/google/drive/labels/schedule-sync"
+      },
+      "list_scheduled_sync_google_drive_labels": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/google/drive/labels/schedule-sync/list"
+      },
+      "remove_scheduled_sync_google_drive_labels": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/google/drive/labels/schedule-sync/{uuid}"
+      },
+      "get_scheduled_sync_google_drive_labels": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/google/drive/labels/schedule-sync/{uuid}"
+      },
+      "update_scheduled_sync_google_drive_labels": {
+        "params": [
+          "uuid"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/google/drive/labels/schedule-sync/{uuid}"
+      },
+      "create_scheduled_sync_information_protection_labels": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/microsoft/onedrive/labels/schedule-sync"
+      },
+      "list_scheduled_sync_information_protection_labels": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/microsoft/onedrive/labels/schedule-sync/list"
+      },
+      "remove_scheduled_sync_information_protection_labels": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/microsoft/onedrive/labels/schedule-sync/{uuid}"
+      },
+      "get_scheduled_sync_information_protection_labels": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/microsoft/onedrive/labels/schedule-sync/{uuid}"
+      },
+      "update_scheduled_sync_information_protection_labels": {
+        "params": [
+          "uuid"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/microsoft/onedrive/labels/schedule-sync/{uuid}"
+      },
+      "schedule_google_drive_labels_sync": {
+        "params": [
+          "name",
+          "schedule"
+        ],
+        "method": "POST",
+        "url": "/api/v1/google/drive/labels/schedule-sync"
+      },
+      "list_google_drive_labels_sync_schedules": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/google/drive/labels/schedule-sync/list"
+      },
+      "delete_google_drive_labels_sync_schedule": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/google/drive/labels/schedule-sync/{uuid}"
+      },
+      "get_google_drive_labels_sync_schedule": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/google/drive/labels/schedule-sync/{uuid}"
+      },
+      "update_google_drive_labels_sync_schedule": {
+        "params": [
+          "uuid",
+          "name",
+          "schedule"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/google/drive/labels/schedule-sync/{uuid}"
+      },
+      "schedule_microsoft_onedrive_labels_sync": {
+        "params": [
+          "name",
+          "schedule"
+        ],
+        "method": "POST",
+        "url": "/api/v1/microsoft/onedrive/labels/schedule-sync"
+      },
+      "list_microsoft_onedrive_labels_sync_schedules": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/microsoft/onedrive/labels/schedule-sync/list"
+      },
+      "delete_microsoft_onedrive_labels_sync_schedule": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/microsoft/onedrive/labels/schedule-sync/{uuid}"
+      },
+      "get_microsoft_onedrive_labels_sync_schedule": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/microsoft/onedrive/labels/schedule-sync/{uuid}"
+      },
+      "update_microsoft_onedrive_labels_sync_schedule": {
+        "params": [
+          "uuid",
+          "name",
+          "schedule"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/microsoft/onedrive/labels/schedule-sync/{uuid}"
+      }
+    },
+    "Emails": {
+      "list_email_notifications": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/emails"
+      },
+      "create_email_notification": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/emails"
+      },
+      "email_verify_link_handler": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/emails-verify"
+      },
+      "delete_email_notification": {
+        "params": [
+          "email_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/emails/{email_id}"
+      },
+      "get_email_notification": {
+        "params": [
+          "id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/emails/{id}"
+      },
+      "update_email_notification": {
+        "params": [
+          "id"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/emails/{id}"
+      },
+      "verify_email_address": {
+        "params": [
+          "id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/emails/{id}/verify"
+      },
+      "list_all_email_notifications": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/emails"
+      },
+      "register_new_email_notification": {
+        "params": [
+          "name",
+          "to_address",
+          "subject",
+          "body"
+        ],
+        "method": "POST",
+        "url": "/api/v1/emails"
+      },
+      "verify_emails": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/emails-verify"
+      },
+      "retrieve_email_notification_configuration": {
+        "params": [
+          "email_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/emails/{email_id}"
+      },
+      "update_email_notification_configuration": {
+        "params": [
+          "email_id",
+          "name",
+          "to_address",
+          "subject",
+          "body"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/emails/{email_id}"
+      },
+      "send_verification_email": {
+        "params": [
+          "email_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/emails/{email_id}/verify"
+      }
+    },
+    "EntraID": {
+      "get_entra_id_configs": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/microsoft/entraid/configs"
+      },
+      "add_entra_id_config": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/microsoft/entraid/configs"
+      },
+      "delete_entra_id_config": {
+        "params": [
+          "config_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/microsoft/entraid/configs/{config_id}"
+      },
+      "get_entra_id_config": {
+        "params": [
+          "config_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/microsoft/entraid/configs/{config_id}"
+      },
+      "update_entra_id_config": {
+        "params": [
+          "config_id",
+          "name",
+          "client_id",
+          "client_secret",
+          "tenant_id"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/microsoft/entraid/configs/{config_id}"
+      },
+      "sync_entra_id": {
+        "params": [
+          "id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/microsoft/entraid/configs/{id}/sync"
+      },
+      "sync_entra_id_groups": {
+        "params": [
+          "config_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/microsoft/entraid/configs/{config_id}/sync/groups"
+      },
+      "count_entra_id_users": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/microsoft/entraid/count"
+      },
+      "list_entra_id_groups": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/microsoft/entraid/groups"
+      },
+      "create_entra_id_config": {
+        "params": [
+          "name",
+          "client_id",
+          "client_secret",
+          "tenant_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/microsoft/entraid/configs"
+      },
+      "sync_entra_id_config": {
+        "params": [
+          "config_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/microsoft/entraid/configs/{config_id}/sync"
+      },
+      "get_entra_id_user_count": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/microsoft/entraid/count"
+      },
+      "get_entra_id_groups": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/microsoft/entraid/groups"
+      }
+    },
+    "Events": {
+      "get_event": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/events"
+      },
+      "get_events": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/events"
+      }
+    },
+    "FileShadow": {
+      "delete_file_shadow_storage_config": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/fileshadow/config"
+      },
+      "get_file_shadow_storage_config": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/fileshadow/config"
+      },
+      "put_file_shadow_storage_config": {
+        "params": [],
+        "method": "PUT",
+        "url": "/api/v1/fileshadow/config"
+      },
+      "get_file_shadow_test_config": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/fileshadow/config/test"
+      },
+      "get_decryption_tool_versions": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/fileshadow/decryption-tool"
+      },
+      "get_file_shadow_evidence": {
+        "params": [
+          "action_uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/fileshadow/evidence/{action_uuid}"
+      },
+      "get_file_shadow_evidence_for_agent": {
+        "params": [
+          "agent_uuid",
+          "action_uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/fileshadow/evidence/{agent_uuid}/{action_uuid}"
+      },
+      "get_file_shadow_recipients": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/fileshadow/recipients"
+      },
+      "delete_file_shadow_recipient": {
+        "params": [
+          "name"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/fileshadow/recipients/{name}"
+      },
+      "get_file_shadow_recipient": {
+        "params": [
+          "name"
+        ],
+        "method": "GET",
+        "url": "/api/v1/fileshadow/recipients/{name}"
+      },
+      "put_file_shadow_recipient": {
+        "params": [
+          "name"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/fileshadow/recipients/{name}"
+      },
+      "get_clipboard_forensic_evidence_for_agent": {
+        "params": [
+          "agent_uuid",
+          "action_uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/forensic-evidence/clipboard/{agent_uuid}/{action_uuid}"
+      },
+      "get_fileshadow_forensic_evidence_for_agent": {
+        "params": [
+          "agent_uuid",
+          "action_uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/forensic-evidence/fileshadow/{agent_uuid}/{action_uuid}"
+      },
+      "get_screenshot_forensic_evidence_for_agent": {
+        "params": [
+          "agent_uuid",
+          "action_uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/forensic-evidence/screenshot/{agent_uuid}/{action_uuid}"
+      },
+      "delete_file_shadow_config": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/fileshadow/config"
+      },
+      "get_file_shadow_config": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/fileshadow/config"
+      },
+      "update_file_shadow_config": {
+        "params": [
+          "config"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/fileshadow/config"
+      },
+      "test_file_shadow_config": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/fileshadow/config/test"
+      },
+      "get_file_shadow_decryption_tool": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/fileshadow/decryption-tool"
+      },
+      "get_file_shadow_evidence_by_action_uuid": {
+        "params": [
+          "action_uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/fileshadow/evidence/{action_uuid}"
+      },
+      "get_file_shadow_evidence_by_agent_action_uuid": {
+        "params": [
+          "agent_uuid",
+          "action_uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/fileshadow/evidence/{agent_uuid}/{action_uuid}"
+      },
+      "update_file_shadow_recipient": {
+        "params": [
+          "name",
+          "recipient_data"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/fileshadow/recipients/{name}"
+      },
+      "get_clipboard_evidence": {
+        "params": [
+          "agent_uuid",
+          "action_uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/forensic-evidence/clipboard/{agent_uuid}/{action_uuid}"
+      },
+      "get_file_shadow_forensic_evidence": {
+        "params": [
+          "agent_uuid",
+          "action_uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/forensic-evidence/fileshadow/{agent_uuid}/{action_uuid}"
+      },
+      "get_screenshot_evidence": {
+        "params": [
+          "agent_uuid",
+          "action_uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/forensic-evidence/screenshot/{agent_uuid}/{action_uuid}"
+      }
+    },
+    "GlobalOperators": {
+      "delete_global_operator": {
+        "params": [
+          "operator_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v2/global-operators/{operator_id}"
+      },
+      "get_global_operator": {
+        "params": [
+          "operator_id"
+        ],
+        "method": "GET",
+        "url": "/api/v2/global-operators/{operator_id}"
+      },
+      "get_global_operators": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/global-operators/search"
+      },
+      "global_operator_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/global-operators/terms"
+      },
+      "search_global_operators": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/global-operators/search"
+      },
+      "get_global_operators_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/global-operators/terms"
+      }
+    },
+    "Google": {
+      "google_service_list_credentials": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/google/credentials"
+      },
+      "google_service_create_credentials": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/google/credentials"
+      },
+      "google_service_verify_credentials": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/google/credentials/verify"
+      },
+      "google_service_delete_credentials": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/google/credentials/{uuid}"
+      },
+      "google_service_get_credentials": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/google/credentials/{uuid}"
+      },
+      "google_service_update_credentials": {
+        "params": [
+          "uuid"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/google/credentials/{uuid}"
+      },
+      "google_service_verify_saved_credentials": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/google/credentials/{uuid}/verify"
+      },
+      "list_saas_google_drive_subscriptions": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/google/drive"
+      },
+      "create_saas_google_drive_subscription": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/google/drive"
+      },
+      "list_google_drive_labels": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/google/drive-labels"
+      },
+      "sync_google_drive_labels": {
+        "params": [],
+        "method": "PUT",
+        "url": "/api/v1/google/drive-labels/sync"
+      },
+      "get_google_drive_label": {
+        "params": [
+          "id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/google/drive-labels/{id}"
+      },
+      "cancel_saas_google_drive_subscription": {
+        "params": [
+          "id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/google/drive/{id}"
+      },
+      "get_saas_google_drive_subscription": {
+        "params": [
+          "id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/google/drive/{id}"
+      },
+      "update_saas_google_drive_subscription": {
+        "params": [
+          "id"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/google/drive/{id}"
+      },
+      "get_google_credentials": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/google/credentials"
+      },
+      "create_google_credentials": {
+        "params": [
+          "client_id",
+          "client_secret",
+          "redirect_uris"
+        ],
+        "method": "POST",
+        "url": "/api/v1/google/credentials"
+      },
+      "verify_google_credentials": {
+        "params": [
+          "credentials_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/google/credentials/{credentials_id}/verify"
+      },
+      "delete_google_credentials": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/google/credentials/{uuid}"
+      },
+      "get_google_credentials_by_uuid": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/google/credentials/{uuid}"
+      },
+      "update_google_credentials": {
+        "params": [
+          "uuid",
+          "client_id",
+          "client_secret",
+          "redirect_uris"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/google/credentials/{uuid}"
+      },
+      "get_google_drive_files": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/google/drive"
+      },
+      "create_google_drive_file": {
+        "params": [
+          "file_data"
+        ],
+        "method": "POST",
+        "url": "/api/v1/google/drive"
+      },
+      "get_google_drive_labels": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/google/drive-labels"
+      },
+      "get_google_drive_label_by_id": {
+        "params": [
+          "label_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/google/drive-labels/{label_id}"
+      },
+      "delete_google_drive_file": {
+        "params": [
+          "file_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/google/drive/{file_id}"
+      },
+      "get_google_drive_file_by_id": {
+        "params": [
+          "file_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/google/drive/{file_id}"
+      },
+      "update_google_drive_file": {
+        "params": [
+          "file_id",
+          "file_data"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/google/drive/{file_id}"
+      }
+    },
+    "GoogleDirectory": {
+      "get_google_directory_configs": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/google/directory/configs"
+      },
+      "add_google_directory_config": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/google/directory/configs"
+      },
+      "delete_google_directory_config": {
+        "params": [
+          "config_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/google/directory/configs/{config_id}"
+      },
+      "get_google_directory_config": {
+        "params": [
+          "config_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/google/directory/configs/{config_id}"
+      },
+      "update_google_directory_config": {
+        "params": [
+          "config_id",
+          "name",
+          "domain",
+          "client_id",
+          "client_secret"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/google/directory/configs/{config_id}"
+      },
+      "sync_google_directory": {
+        "params": [
+          "id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/google/directory/configs/{id}/sync"
+      },
+      "sync_google_directory_groups": {
+        "params": [
+          "config_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/google/directory/configs/{config_id}/sync/groups"
+      },
+      "list_google_directory_groups": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/google/directory/groups"
+      },
+      "create_google_directory_config": {
+        "params": [
+          "name",
+          "domain",
+          "client_id",
+          "client_secret"
+        ],
+        "method": "POST",
+        "url": "/api/v1/google/directory/configs"
+      },
+      "sync_google_directory_config": {
+        "params": [
+          "config_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/google/directory/configs/{config_id}/sync"
+      },
+      "get_google_directory_groups": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/google/directory/groups"
+      }
+    },
+    "Indicators": {
+      "get_indicators": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/indicators"
+      },
+      "get_tactics": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/indicators/tactics"
+      },
+      "get_techniques": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/indicators/techniques"
+      }
+    },
+    "Ldap": {
+      "get_ldap_configs": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/admin/ldap/config"
+      },
+      "add_ldap_config": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/admin/ldap/config"
+      },
+      "delete_ldap_config": {
+        "params": [
+          "config_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/admin/ldap/config/{config_id}"
+      },
+      "get_ldap_config": {
+        "params": [
+          "config_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/admin/ldap/config/{config_id}"
+      },
+      "update_ldap_config": {
+        "params": [
+          "config_id",
+          "name",
+          "host",
+          "port",
+          "base_dn",
+          "bind_dn",
+          "bind_password"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/admin/ldap/config/{config_id}"
+      },
+      "get_ldap_sync_status": {
+        "params": [
+          "config_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/admin/ldap/config/{config_id}/status"
+      },
+      "update_ldap_sync_status": {
+        "params": [
+          "config_id",
+          "status"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/admin/ldap/config/{config_id}/status"
+      },
+      "get_ldap_sync_tool_versions": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/admin/ldap/sync-tool"
+      },
+      "sync_ldap": {
+        "params": [
+          "id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/ldap/sync/{id}"
+      },
+      "create_ldap_config": {
+        "params": [
+          "name",
+          "host",
+          "port",
+          "base_dn",
+          "bind_dn",
+          "bind_password"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/ldap/config"
+      },
+      "perform_ldap_sync": {
+        "params": [
+          "config_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/admin/ldap/sync/{config_id}"
+      }
+    },
+    "Locations": {
+      "get_locations": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/locations"
+      },
+      "add_location": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/locations"
+      },
+      "query_locations": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v1/locations/query"
+      },
+      "delete_location": {
+        "params": [
+          "location_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/locations/{location_id}"
+      },
+      "get_location": {
+        "params": [
+          "id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/locations/{id}"
+      },
+      "update_location": {
+        "params": [
+          "location_id",
+          "name",
+          "description"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/locations/{location_id}"
+      },
+      "get_subnets": {
+        "params": [
+          "id",
+          "location_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/locations/{location_id}/subnets"
+      },
+      "add_subnet": {
+        "params": [
+          "location_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/locations/{location_id}/subnets"
+      },
+      "delete_subnet": {
+        "params": [
+          "location_id",
+          "id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/locations/{location_id}/subnets/{id}"
+      },
+      "get_subnet": {
+        "params": [
+          "location_id",
+          "id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/locations/{location_id}/subnets/{id}"
+      },
+      "create_location": {
+        "params": [
+          "name",
+          "description"
+        ],
+        "method": "POST",
+        "url": "/api/v1/locations"
+      },
+      "get_location_by_id": {
+        "params": [
+          "location_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/locations/{location_id}"
+      },
+      "get_location_subnets": {
+        "params": [
+          "location_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/locations/{location_id}/subnets"
+      },
+      "create_location_subnet": {
+        "params": [
+          "location_id",
+          "subnet"
+        ],
+        "method": "POST",
+        "url": "/api/v1/locations/{location_id}/subnets"
+      },
+      "delete_location_subnet": {
+        "params": [
+          "location_id",
+          "subnet_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/locations/{location_id}/subnets/{subnet_id}"
+      },
+      "get_location_subnet_by_id": {
+        "params": [
+          "location_id",
+          "subnet_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/locations/{location_id}/subnets/{subnet_id}"
+      }
+    },
+    "MFA": {
+      "mfa_service_get_info": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/authentication/mfa"
+      },
+      "delete_totp": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/authentication/mfa/totp"
+      },
+      "start_register_totp": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/authentication/mfa/totp/register"
+      },
+      "finish_register_totp": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/authentication/mfa/totp/register"
+      },
+      "start_register_webauthn": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/authentication/mfa/webauthn/register"
+      },
+      "finish_register_webauthn": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/authentication/mfa/webauthn/register"
+      },
+      "delete_webauthn": {
+        "params": [
+          "name"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/authentication/mfa/webauthn/{name}"
+      }
+    },
+    "ManagedServiceReports": {
+      "list_reports": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/managed-service-reports"
+      },
+      "download_report": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/managed-service-reports/{uuid}"
+      }
+    },
+    "Microsoft": {
+      "microsoft_service_list_credentials": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/microsoft/credentials"
+      },
+      "microsoft_service_create_credentials": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/microsoft/credentials"
+      },
+      "microsoft_service_verify_credentials": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/microsoft/credentials/verify"
+      },
+      "microsoft_service_delete_credentials": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/microsoft/credentials/{uuid}"
+      },
+      "microsoft_service_get_credentials": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/microsoft/credentials/{uuid}"
+      },
+      "microsoft_service_update_credentials": {
+        "params": [
+          "uuid"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/microsoft/credentials/{uuid}"
+      },
+      "microsoft_service_verify_saved_credentials": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/microsoft/credentials/{uuid}/verify"
+      },
+      "list_saas_microsoft_onedrive_subscriptions": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/microsoft/onedrive"
+      },
+      "create_saas_microsoft_onedrive_subscription": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/microsoft/onedrive"
+      },
+      "list_microsoft_information_protection_labels": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/microsoft/onedrive/labels"
+      },
+      "sync_information_protection_labels": {
+        "params": [],
+        "method": "PUT",
+        "url": "/api/v1/microsoft/onedrive/labels/sync"
+      },
+      "get_microsoft_information_protection_label": {
+        "params": [
+          "id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/microsoft/onedrive/labels/{id}"
+      },
+      "cancel_saas_microsoft_onedrive_subscription": {
+        "params": [
+          "id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/microsoft/onedrive/{id}"
+      },
+      "get_saas_microsoft_onedrive_subscription": {
+        "params": [
+          "id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/microsoft/onedrive/{id}"
+      },
+      "update_saas_microsoft_onedrive_subscription": {
+        "params": [
+          "id"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/microsoft/onedrive/{id}"
+      },
+      "set_teams_enabled": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/microsoft/teams/enable"
+      },
+      "get_teams_enabled": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/microsoft/teams/enabled"
+      },
+      "teams_health": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/microsoft/teams/health"
+      },
+      "get_microsoft_credentials": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/microsoft/credentials"
+      },
+      "create_microsoft_credentials": {
+        "params": [
+          "client_id",
+          "client_secret",
+          "redirect_uris"
+        ],
+        "method": "POST",
+        "url": "/api/v1/microsoft/credentials"
+      },
+      "verify_microsoft_credentials": {
+        "params": [
+          "credentials_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/microsoft/credentials/{credentials_id}/verify"
+      },
+      "delete_microsoft_credentials": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/microsoft/credentials/{uuid}"
+      },
+      "get_microsoft_credentials_by_uuid": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/microsoft/credentials/{uuid}"
+      },
+      "update_microsoft_credentials": {
+        "params": [
+          "uuid",
+          "client_id",
+          "client_secret",
+          "redirect_uris"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/microsoft/credentials/{uuid}"
+      },
+      "get_microsoft_onedrive_files": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/microsoft/onedrive"
+      },
+      "create_microsoft_onedrive_file": {
+        "params": [
+          "file_data"
+        ],
+        "method": "POST",
+        "url": "/api/v1/microsoft/onedrive"
+      },
+      "get_microsoft_onedrive_labels": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/microsoft/onedrive/labels"
+      },
+      "sync_microsoft_onedrive_labels": {
+        "params": [],
+        "method": "PUT",
+        "url": "/api/v1/microsoft/onedrive/labels/sync"
+      },
+      "get_microsoft_onedrive_label_by_id": {
+        "params": [
+          "label_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/microsoft/onedrive/labels/{label_id}"
+      },
+      "delete_microsoft_onedrive_file": {
+        "params": [
+          "file_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/microsoft/onedrive/{file_id}"
+      },
+      "get_microsoft_onedrive_file_by_id": {
+        "params": [
+          "file_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/microsoft/onedrive/{file_id}"
+      },
+      "update_microsoft_onedrive_file": {
+        "params": [
+          "file_id",
+          "file_data"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/microsoft/onedrive/{file_id}"
+      }
+    },
+    "OperatorPreferences": {
+      "reset_operator_preferences": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/operator-preferences"
+      },
+      "list_operator_preferences": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/operator-preferences"
+      },
+      "set_operator_preference": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/operator-preferences"
+      },
+      "delete_operator_preference": {
+        "params": [
+          "key"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/operator-preferences/{key}"
+      },
+      "get_operator_preference": {
+        "params": [
+          "key"
+        ],
+        "method": "GET",
+        "url": "/api/v1/operator-preferences/{key}"
+      }
+    },
+    "Outlook": {
+      "delete_certificate": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/outloook/certificate"
+      },
+      "outlook_service_get_certificate": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/outloook/certificate"
+      },
+      "renew_certificate": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/outloook/certificate"
+      },
+      "delete_outlook_certificate": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/outloook/certificate"
+      },
+      "get_outlook_certificate": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/outloook/certificate"
+      },
+      "upload_outlook_certificate": {
+        "params": [
+          "certificate_content",
+          "content_type"
+        ],
+        "method": "POST",
+        "url": "/api/v1/outloook/certificate"
+      }
+    },
+    "Passphrase": {
+      "handle_forgotten_passphrase": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/forgotten-passphrase"
+      },
+      "set_passphrase": {
+        "params": [
+          "new_passphrase"
+        ],
+        "method": "POST",
+        "url": "/api/v1/passphrase"
+      },
+      "change_passphrase": {
+        "params": [
+          "old_passphrase",
+          "new_passphrase"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/passphrase"
+      },
+      "passphrase_reset_link_handler": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/passphrase-reset"
+      },
+      "test_passphrase": {
+        "params": [
+          "passphrase_to_test"
+        ],
+        "method": "POST",
+        "url": "/api/v1/passphrase/test"
+      },
+      "get_forgotten_passphrase": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/forgotten-passphrase"
+      },
+      "invalidate_operator_passphrase": {
+        "params": [
+          "operator_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/operators/{operator_id}/passphrase"
+      },
+      "generate_passphrase_reset_link": {
+        "params": [
+          "operator_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/operators/{operator_id}/passphrase/reset-link"
+      },
+      "prompt_passphrase_reset_on_next_login": {
+        "params": [
+          "operator_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/operators/{operator_id}/passphrase/reset-next-login"
+      },
+      "get_passphrase_reset_info": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/passphrase-reset"
+      }
+    },
+    "Permissions": {
+      "get_permissions": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/permissions"
+      }
+    },
+    "Perspectives": {
+      "get_perspectives": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/perspectives"
+      },
+      "create_perspective": {
+        "params": [
+          "name",
+          "description",
+          "config"
+        ],
+        "method": "POST",
+        "url": "/api/v1/perspectives"
+      },
+      "delete_perspective": {
+        "params": [
+          "id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/perspectives/{id}"
+      },
+      "get_perspective": {
+        "params": [
+          "id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/perspectives/{id}"
+      },
+      "get_all_perspectives": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/perspectives"
+      },
+      "delete_perspective_by_id": {
+        "params": [
+          "perspective_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/perspectives/{perspective_id}"
+      },
+      "get_perspective_by_id": {
+        "params": [
+          "perspective_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/perspectives/{perspective_id}"
+      }
+    },
+    "Quota": {
+      "get_license": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/license"
+      },
+      "refresh_license_status": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/license/refresh"
+      },
+      "get_license_status": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/license/status"
+      }
+    },
+    "Roles": {
+      "get_roles": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/roles"
+      },
+      "create_role": {
+        "params": [
+          "name",
+          "description",
+          "permissions"
+        ],
+        "method": "POST",
+        "url": "/api/v1/roles"
+      },
+      "delete_role": {
+        "params": [
+          "role_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/roles/{role_id}"
+      },
+      "get_role": {
+        "params": [
+          "role_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/roles/{role_id}"
+      },
+      "update_role": {
+        "params": [
+          "role_id",
+          "name",
+          "description",
+          "permissions"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/roles/{role_id}"
+      }
+    },
+    "SAML": {
+      "delete_config": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/saml/config"
+      },
+      "get_config_2": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/saml/config"
+      },
+      "edit_config": {
+        "params": [],
+        "method": "PUT",
+        "url": "/api/v1/saml/config"
+      },
+      "delete_crypto_keys": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/saml/cryptokeys"
+      },
+      "saml_service_get_certificate": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/saml/cryptokeys"
+      },
+      "create_crypto_keys": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/saml/cryptokeys"
+      },
+      "edit_crypto_keys": {
+        "params": [],
+        "method": "PUT",
+        "url": "/api/v1/saml/cryptokeys"
+      },
+      "saml_service_get_info": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/saml/info"
+      },
+      "delete_saml_config": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/saml/config"
+      },
+      "get_saml_config": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/saml/config"
+      },
+      "edit_saml_config": {
+        "params": [
+          "config"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/saml/config"
+      },
+      "delete_cryptographic_keys": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/saml/cryptokeys"
+      },
+      "get_saml_certificate": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/saml/cryptokeys"
+      },
+      "generate_cryptographic_keys": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/saml/cryptokeys"
+      },
+      "upload_cryptographic_keys": {
+        "params": [
+          "certificate_content",
+          "content_type"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/saml/cryptokeys"
+      },
+      "get_saml_info": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/saml/info"
+      }
+    },
+    "SavedQueries": {
+      "get_saved_queries": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/search/queries"
+      },
+      "create_saved_query": {
+        "params": [
+          "name",
+          "query",
+          "description"
+        ],
+        "method": "POST",
+        "url": "/api/v2/search/queries"
+      },
+      "delete_saved_query": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v2/search/queries/{uuid}"
+      },
+      "get_saved_query": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v2/search/queries/{uuid}"
+      },
+      "update_saved_query": {
+        "params": [
+          "uuid",
+          "name",
+          "query",
+          "description"
+        ],
+        "method": "PUT",
+        "url": "/api/v2/search/queries/{uuid}"
+      },
+      "list_saved_queries": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/search/queries"
+      },
+      "get_saved_query_by_uuid": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v2/search/queries/{uuid}"
+      }
+    },
+    "ScopedInvestigations": {
+      "list_scoped_investigations": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/scoped-investigations"
+      },
+      "assign_scoped_investigation": {
+        "params": [
+          "investigation_id",
+          "operator_id"
+        ],
+        "method": "POST",
+        "url": "/api/v2/scoped-investigations"
+      },
+      "clear_active_scoped_investigation": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v2/scoped-investigations/active"
+      },
+      "scoped_investigation_aggregation": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/scoped-investigations/aggregate"
+      },
+      "list_scoped_investigation_requests": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/scoped-investigations/requests"
+      },
+      "request_scoped_investigation": {
+        "params": [
+          "name",
+          "description"
+        ],
+        "method": "POST",
+        "url": "/api/v2/scoped-investigations/requests"
+      },
+      "scoped_investigation_request_aggregation": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/scoped-investigations/requests/aggregate"
+      },
+      "get_scoped_investigation_request": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v2/scoped-investigations/requests/{uuid}"
+      },
+      "update_scoped_investigation_request": {
+        "params": [
+          "uuid",
+          "name",
+          "description"
+        ],
+        "method": "POST",
+        "url": "/api/v2/scoped-investigations/requests/{uuid}"
+      },
+      "activate_scoped_investigation": {
+        "params": [
+          "uuid"
+        ],
+        "method": "POST",
+        "url": "/api/v2/scoped-investigations/requests/{uuid}/activate"
+      },
+      "cancel_scoped_investigation_request": {
+        "params": [
+          "uuid"
+        ],
+        "method": "POST",
+        "url": "/api/v2/scoped-investigations/requests/{uuid}/cancel"
+      },
+      "get_scoped_investigation_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/scoped-investigations/terms"
+      },
+      "get_scoped_investigation": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v2/scoped-investigations/{uuid}"
+      },
+      "update_scoped_investigation": {
+        "params": [
+          "uuid",
+          "name",
+          "description"
+        ],
+        "method": "POST",
+        "url": "/api/v2/scoped-investigations/{uuid}"
+      },
+      "approve_scoped_investigation": {
+        "params": [
+          "uuid"
+        ],
+        "method": "POST",
+        "url": "/api/v2/scoped-investigations/{uuid}/approve"
+      },
+      "revoke_scoped_investigation": {
+        "params": [
+          "uuid"
+        ],
+        "method": "POST",
+        "url": "/api/v2/scoped-investigations/{uuid}/revoke"
+      },
+      "get_scoped_investigations": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/scoped-investigations"
+      },
+      "deactivate_active_scoped_investigation": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v2/scoped-investigations/active"
+      },
+      "aggregate_scoped_investigations": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/scoped-investigations/aggregate"
+      },
+      "get_scoped_investigation_requests": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/scoped-investigations/requests"
+      },
+      "aggregate_scoped_investigation_requests": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/scoped-investigations/requests/aggregate"
+      },
+      "get_scoped_investigation_request_details": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v2/scoped-investigations/requests/{uuid}"
+      },
+      "get_scoped_investigation_details": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v2/scoped-investigations/{uuid}"
+      },
+      "revoke_scoped_investigation_access": {
+        "params": [
+          "uuid"
+        ],
+        "method": "POST",
+        "url": "/api/v2/scoped-investigations/{uuid}/revoke"
+      }
+    },
+    "Search": {
+      "get_search_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/search/terms"
+      }
+    },
+    "SequenceDetection": {
+      "list_bounded_definition_uuids": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/sequence-detections/bounded-definitions"
+      },
+      "get_bounded_entity_count": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/sequence-detections/bounded-definitions/{uuid}/entity-count"
+      },
+      "list_definitions": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/sequence-detections/definitions"
+      },
+      "create_definition": {
+        "params": [
+          "name",
+          "description",
+          "definition_data"
+        ],
+        "method": "POST",
+        "url": "/api/v1/sequence-detections/definitions"
+      },
+      "delete_definition": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/sequence-detections/definitions/{uuid}"
+      },
+      "get_definition": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/sequence-detections/definitions/{uuid}"
+      },
+      "update_definition": {
+        "params": [
+          "uuid",
+          "name",
+          "description",
+          "definition_data"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/sequence-detections/definitions/{uuid}"
+      },
+      "publish_definition": {
+        "params": [
+          "uuid"
+        ],
+        "method": "POST",
+        "url": "/api/v1/sequence-detections/definitions/{uuid}/publish"
+      },
+      "get_bounded_definitions": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/sequence-detections/bounded-definitions"
+      },
+      "get_bounded_definitions_entity_count": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/sequence-detections/bounded-definitions/{uuid}/entity-count"
+      },
+      "get_definitions": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/sequence-detections/definitions"
+      }
+    },
+    "Siem": {
+      "list_streams": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/siem"
+      },
+      "create_stream": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/siem"
+      },
+      "stream_health": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/siem/health/{uuid}"
+      },
+      "delete_stream": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/siem/{uuid}"
+      },
+      "get_stream": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/siem/{uuid}"
+      },
+      "update_stream": {
+        "params": [
+          "uuid"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/siem/{uuid}"
+      },
+      "list_siem_streams": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/siem"
+      }
+    },
+    "Slack": {
+      "delete_slack_auth": {
+        "params": [],
+        "method": "DELETE",
+        "url": "/api/v1/slack/auth"
+      },
+      "slack_auth": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/slack/auth"
+      },
+      "slack_health": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/slack/health"
+      },
+      "slack_o_auth_url": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/slack/oauth-url"
+      }
+    },
+    "StackFederation": {
+      "create_enrollment_token": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/federation/enroll"
+      },
+      "get_agent_routing_rules": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/federation/routing-rules"
+      },
+      "set_agent_routing_rules": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/federation/routing-rules"
+      },
+      "get_unrouted_agent_default": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/federation/routing-rules/default"
+      },
+      "set_unrouted_agent_default": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/federation/routing-rules/default"
+      },
+      "export_agent_routing_rules": {
+        "params": [
+          "file_format",
+          "download_folder"
+        ],
+        "method": "POST",
+        "url": "/api/v1/federation/routing-rules/export"
+      },
+      "import_agent_routing_rules": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/federation/routing-rules/import"
+      },
+      "get_target_stack_by_labels": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/federation/routing-rules/test"
+      },
+      "get_agent_routing_rule": {
+        "params": [
+          "id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/federation/routing-rules/{id}"
+      },
+      "stack_federation_service_revoke_enroll_token": {
+        "params": [
+          "token_id"
+        ],
+        "method": "POST",
+        "url": "/api/v1/federation/token/{token_id}/revoke"
+      }
+    },
+    "SupportingOperators": {
+      "list_supporting_operator_grants": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/supporting-operators/grants"
+      },
+      "revoke_supporting_operator_grant": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/supporting-operators/grants/{uuid}"
+      },
+      "get_supporting_operator_grant": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/supporting-operators/grants/{uuid}"
+      },
+      "list_supporting_operator_requests": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/supporting-operators/requests"
+      },
+      "deny_supporting_operator_request": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/supporting-operators/requests/{uuid}"
+      },
+      "get_supporting_operator_request": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/supporting-operators/requests/{uuid}"
+      },
+      "approve_supporting_operator_request": {
+        "params": [
+          "uuid"
+        ],
+        "method": "POST",
+        "url": "/api/v1/supporting-operators/requests/{uuid}/approve"
+      },
+      "create_support_access": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/supporting-operators/support-access"
+      }
+    },
+    "TenantPreferences": {
+      "list_tenant_preferences": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/tenant-preferences"
+      },
+      "set_tenant_preference": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/tenant-preferences"
+      },
+      "delete_tenant_preference": {
+        "params": [
+          "key"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/tenant-preferences/{key}"
+      },
+      "get_tenant_preference": {
+        "params": [
+          "key"
+        ],
+        "method": "GET",
+        "url": "/api/v1/tenant-preferences/{key}"
+      }
+    },
+    "Tenants": {
+      "get_tenant_forticloud_attributes": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/tenants/forticloud"
+      }
+    },
+    "TimelineSearch": {
+      "post_timeline_action_events_request": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/timeline/action_events"
+      },
+      "post_timeline_action_events_aggregation_request": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/timeline/action_events/aggregate"
+      },
+      "post_timeline_count_action_events_request": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/timeline/action_events/count"
+      },
+      "post_timeline_actions_request": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/timeline/actions"
+      },
+      "post_timeline_actions_aggregation_request": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/timeline/actions/aggregate"
+      },
+      "post_timeline_count_actions_request": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/timeline/actions/count"
+      },
+      "timeline_activity_feed": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/timeline/activity"
+      },
+      "post_timeline_incidents_request": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/timeline/incident_sensors"
+      },
+      "post_timeline_incidents_aggregation_request": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/timeline/incident_sensors/aggregate"
+      },
+      "post_timeline_count_incidents_request": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/timeline/incident_sensors/count"
+      },
+      "timeline_incident_event_scope": {
+        "params": [
+          "id"
+        ],
+        "method": "POST",
+        "url": "/api/v2/timeline/incident_sensors/{id}/scope"
+      },
+      "get_timeline_saved_searches": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/timeline/savedsearches"
+      },
+      "create_timeline_saved_search": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v2/timeline/savedsearches"
+      },
+      "delete_timeline_saved_search": {
+        "params": [
+          "id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v2/timeline/savedsearches/{id}"
+      },
+      "get_timeline_saved_search": {
+        "params": [
+          "id"
+        ],
+        "method": "GET",
+        "url": "/api/v2/timeline/savedsearches/{id}"
+      },
+      "update_timeline_saved_search": {
+        "params": [
+          "id"
+        ],
+        "method": "PUT",
+        "url": "/api/v2/timeline/savedsearches/{id}"
+      },
+      "get_timeline_event_streams": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/timeline/streams"
+      },
+      "exportable_timeline_fields": {
+        "params": [
+          "event_stream"
+        ],
+        "method": "GET",
+        "url": "/api/v2/timeline/{event_stream}/export/fields"
+      },
+      "get_timeline_event_by_id": {
+        "params": [
+          "event_stream",
+          "id"
+        ],
+        "method": "GET",
+        "url": "/api/v2/timeline/{event_stream}/{id}"
+      },
+      "post_timeline_request": {
+        "params": [
+          "query_event_stream"
+        ],
+        "method": "POST",
+        "url": "/api/v2/timeline/{query_event_stream}"
+      },
+      "post_timeline_aggregation_request": {
+        "params": [
+          "query_event_stream"
+        ],
+        "method": "POST",
+        "url": "/api/v2/timeline/{query_event_stream}/aggregate"
+      },
+      "post_timeline_count_request": {
+        "params": [
+          "query_event_stream"
+        ],
+        "method": "POST",
+        "url": "/api/v2/timeline/{query_event_stream}/count"
+      },
+      "export_timeline_csv": {
+        "params": [
+          "query_event_stream",
+          "file_format",
+          "download_folder"
+        ],
+        "method": "POST",
+        "url": "/api/v2/timeline/{query_event_stream}/export/csv"
+      },
+      "export_timeline_xlsx": {
+        "params": [
+          "query_event_stream",
+          "file_format",
+          "download_folder"
+        ],
+        "method": "POST",
+        "url": "/api/v2/timeline/{query_event_stream}/export/xlsx"
+      }
+    },
+    "UsageStatistics": {
+      "post_event_count_request": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/usage"
+      }
+    },
+    "Webhooks": {
+      "get_webhooks": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/webhooks"
+      },
+      "create_webhook": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/webhooks"
+      },
+      "validate_webhook_custom_payload": {
+        "params": [],
+        "method": "POST",
+        "url": "/api/v1/webhooks/custom/validate"
+      },
+      "delete_webhook": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/webhooks/{uuid}"
+      },
+      "get_webhook": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v1/webhooks/{uuid}"
+      },
+      "update_webhook": {
+        "params": [
+          "uuid"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/webhooks/{uuid}"
+      },
+      "test_webhook": {
+        "params": [
+          "uuid"
+        ],
+        "method": "POST",
+        "url": "/api/v1/webhooks/{uuid}/test"
+      }
+    },
+    "ActionEvents": {
+      "list": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/action_events"
+      },
+      "get": {
+        "params": [
+          "event_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/action_events/{event_id}"
+      }
+    },
+    "AgentGroups": {
+      "list": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/agent_policy_groups"
+      },
+      "create": {
+        "params": [
+          "data"
+        ],
+        "method": "POST",
+        "url": "/api/v1/agent_policy_groups"
+      },
+      "get": {
+        "params": [
+          "group_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/agent_policy_groups/{group_id}"
+      },
+      "update": {
+        "params": [
+          "group_id",
+          "data"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/agent_policy_groups/{group_id}"
+      },
+      "delete": {
+        "params": [
+          "group_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v1/agent_policy_groups/{group_id}"
+      }
+    },
+    "AuditLogs": {
+      "list": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/audit_logs"
+      },
+      "get": {
+        "params": [
+          "log_id"
+        ],
+        "method": "GET",
+        "url": "/api/v1/audit_logs/{log_id}"
+      }
+    },
+    "Authentication": {
+      "login": {
+        "params": [
+          "username",
+          "password"
+        ],
+        "method": "POST",
+        "url": "/auth/login"
+      },
+      "logout": {
+        "params": [],
+        "method": "POST",
+        "url": "/auth/logout"
+      },
+      "refresh_token": {
+        "params": [],
+        "method": "POST",
+        "url": "/auth/refresh"
+      },
+      "get_current_user": {
+        "params": [],
+        "method": "GET",
+        "url": "/auth/me"
+      },
+      "get_users": {
+        "params": [],
+        "method": "GET",
+        "url": "/auth/users"
+      },
+      "create_user": {
+        "params": [
+          "username",
+          "password",
+          "email",
+          "first_name",
+          "last_name",
+          "roles"
+        ],
+        "method": "POST",
+        "url": "/auth/users"
+      },
+      "get_user_by_id": {
+        "params": [
+          "user_id"
+        ],
+        "method": "GET",
+        "url": "/auth/users/{user_id}"
+      },
+      "update_user": {
+        "params": [
+          "user_id",
+          "email",
+          "first_name",
+          "last_name",
+          "password",
+          "roles"
+        ],
+        "method": "PUT",
+        "url": "/auth/users/{user_id}"
+      },
+      "delete_user": {
+        "params": [
+          "user_id"
+        ],
+        "method": "DELETE",
+        "url": "/auth/users/{user_id}"
+      }
+    },
+    "DashboardService": {
+      "get_dashboards": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/dashboards"
+      },
+      "create_dashboard": {
+        "params": [
+          "name",
+          "description",
+          "config"
+        ],
+        "method": "POST",
+        "url": "/api/v2/dashboards"
+      },
+      "get_dashboard_templates": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/dashboards/templates"
+      },
+      "delete_dashboard": {
+        "params": [
+          "uuid"
+        ],
+        "method": "DELETE",
+        "url": "/api/v2/dashboards/{uuid}"
+      },
+      "get_dashboard_by_uuid": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v2/dashboards/{uuid}"
+      },
+      "update_dashboard": {
+        "params": [
+          "uuid",
+          "name",
+          "description",
+          "config"
+        ],
+        "method": "PUT",
+        "url": "/api/v2/dashboards/{uuid}"
+      }
+    },
+    "EntitiesSearch": {
+      "aggregate_agents": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/aggregate"
+      },
+      "get_agent_archive_config": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/agents/archive/config"
+      },
+      "update_agent_archive_config": {
+        "params": [
+          "config"
+        ],
+        "method": "PUT",
+        "url": "/api/v2/agents/archive/config"
+      },
+      "get_agent_components": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/components"
+      },
+      "get_agent_components_faults": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/agents/components/faults"
+      },
+      "suppress_agent_components": {
+        "params": [
+          "filter",
+          "components"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/components/suppress"
+      },
+      "get_agent_components_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/agents/components/terms"
+      },
+      "unsuppress_agent_components": {
+        "params": [
+          "filter",
+          "components"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/components/unsuppress"
+      },
+      "export_agents_csv": {
+        "params": [
+          "filter",
+          "fields"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/export/csv"
+      },
+      "get_agent_export_fields": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/agents/export/fields"
+      },
+      "export_agents_xlsx": {
+        "params": [
+          "filter",
+          "fields"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/export/xlsx"
+      },
+      "add_labels_to_agents": {
+        "params": [
+          "filter",
+          "labels"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/labels/add"
+      },
+      "remove_labels_from_agents": {
+        "params": [
+          "filter",
+          "labels"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/labels/remove"
+      },
+      "revoke_agent_licenses": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/revoke"
+      },
+      "search_agents": {
+        "params": [
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/search"
+      },
+      "change_agent_state": {
+        "params": [
+          "state",
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/state"
+      },
+      "get_agent_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/agents/terms"
+      },
+      "get_target_agent": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v2/agents/{uuid}"
+      },
+      "get_agent_components_health": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v2/agents/{uuid}/components"
+      },
+      "suppress_agent_components_by_uuid": {
+        "params": [
+          "uuid",
+          "components"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/{uuid}/components/suppress"
+      },
+      "unsuppress_agent_components_by_uuid": {
+        "params": [
+          "uuid",
+          "components"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/{uuid}/components/unsuppress"
+      },
+      "search_agent_users": {
+        "params": [
+          "uuid",
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/agents/{uuid}/users/search"
+      },
+      "aggregate_users": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/aggregate"
+      },
+      "get_user_archive_config": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/users/archive/config"
+      },
+      "update_user_archive_config": {
+        "params": [
+          "config"
+        ],
+        "method": "PUT",
+        "url": "/api/v2/users/archive/config"
+      },
+      "bulk_assign_user_uris": {
+        "params": [
+          "user_uris"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/bulk/useruri"
+      },
+      "export_users_csv": {
+        "params": [
+          "filter",
+          "fields"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/export/csv"
+      },
+      "get_user_export_fields": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/users/export/fields"
+      },
+      "export_users_xlsx": {
+        "params": [
+          "filter",
+          "fields"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/export/xlsx"
+      },
+      "add_labels_to_users": {
+        "params": [
+          "filter",
+          "labels"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/labels/add"
+      },
+      "remove_labels_from_users": {
+        "params": [
+          "filter",
+          "labels"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/labels/remove"
+      },
+      "search_users": {
+        "params": [
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/search"
+      },
+      "change_user_state": {
+        "params": [
+          "state",
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/state"
+      },
+      "get_user_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/users/terms"
+      },
+      "export_user_uris_csv": {
+        "params": [
+          "filter",
+          "fields"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/useruri/export/csv"
+      },
+      "get_single_user": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v2/users/{uuid}"
+      },
+      "search_user_agents": {
+        "params": [
+          "uuid",
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/{uuid}/agents/search"
+      },
+      "get_user_photo": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v2/users/{uuid}/photo"
+      },
+      "get_user_uris": {
+        "params": [
+          "uuid"
+        ],
+        "method": "GET",
+        "url": "/api/v2/users/{uuid}/useruri"
+      },
+      "add_user_uri": {
+        "params": [
+          "uuid",
+          "user_uri"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/{uuid}/useruri/add"
+      },
+      "remove_user_uri": {
+        "params": [
+          "uuid",
+          "user_uri"
+        ],
+        "method": "POST",
+        "url": "/api/v2/users/{uuid}/useruri/remove"
+      }
+    },
+    "ML": {
+      "get_agent_offline_config": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v1/ml/agentoffline/config"
+      },
+      "update_agent_offline_config": {
+        "params": [
+          "config"
+        ],
+        "method": "PUT",
+        "url": "/api/v1/ml/agentoffline/config"
+      }
+    },
+    "SaaSApplications": {
+      "aggregate_saas_applications": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/aggregate"
+      },
+      "allow_domainless_login": {
+        "params": [
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/allow_domainless_login"
+      },
+      "list_saas_application_categories": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/saas-applications/categories"
+      },
+      "get_saas_application_config": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/saas-applications/config"
+      },
+      "update_saas_application_config": {
+        "params": [
+          "config"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/config"
+      },
+      "create_saas_application_entries": {
+        "params": [
+          "ids"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/create"
+      },
+      "create_custom_saas_application": {
+        "params": [
+          "name",
+          "domains",
+          "category"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/custom/create"
+      },
+      "test_url_matching": {
+        "params": [
+          "url"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/custom/test"
+      },
+      "update_custom_saas_application": {
+        "params": [
+          "app_id",
+          "name",
+          "domains",
+          "category"
+        ],
+        "method": "PATCH",
+        "url": "/api/v2/saas-applications/custom/{app_id}"
+      },
+      "delete_saas_application_icon": {
+        "params": [
+          "app_id"
+        ],
+        "method": "DELETE",
+        "url": "/api/v2/saas-applications/custom/{app_id}/icon"
+      },
+      "update_saas_application_icon": {
+        "params": [
+          "app_id",
+          "icon_content",
+          "content_type"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/custom/{app_id}/icon"
+      },
+      "export_saas_applications_csv": {
+        "params": [
+          "filter",
+          "fields"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/export/csv"
+      },
+      "get_saas_application_export_fields": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/saas-applications/export/fields"
+      },
+      "export_saas_applications_xlsx": {
+        "params": [
+          "filter",
+          "fields"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/export/xlsx"
+      },
+      "override_saas_application_scores": {
+        "params": [
+          "scores",
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/scores"
+      },
+      "reset_saas_application_scores": {
+        "params": [
+          "all",
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/scores/reset"
+      },
+      "search_saas_applications": {
+        "params": [
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/search"
+      },
+      "change_saas_application_state": {
+        "params": [
+          "state",
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/state"
+      },
+      "search_saas_application_templates": {
+        "params": [
+          "filter",
+          "results_per_page",
+          "sort_order",
+          "cursor"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/templates"
+      },
+      "get_saas_application_templates_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/saas-applications/templates/terms"
+      },
+      "get_saas_application_terms": {
+        "params": [],
+        "method": "GET",
+        "url": "/api/v2/saas-applications/terms"
+      },
+      "change_saas_application_verdict": {
+        "params": [
+          "verdict",
+          "filter"
+        ],
+        "method": "POST",
+        "url": "/api/v2/saas-applications/verdict"
+      },
+      "get_single_saas_application": {
+        "params": [
+          "app_id"
+        ],
+        "method": "GET",
+        "url": "/api/v2/saas-applications/{app_id}"
+      },
+      "get_saas_application_icon": {
+        "params": [
+          "app_id"
+        ],
+        "method": "GET",
+        "url": "/api/v2/saas-applications/{app_id}/icon"
+      }
+    }
+  },
+  "sourceSymbols": {
+    "fortidlp/fortidlp.py": [
+      "Audit.get_audit_logs",
+      "Audit.clear_audit_logs",
+      "Audit.export_audit_logs",
+      "Audit.get_audit_public_key",
+      "Audit.verify_audit_export",
+      "Cases.list_cases",
+      "Cases.get_case",
+      "Cases.create_case",
+      "Cases.update_case",
+      "Cases.delete_case",
+      "Cases.assign_case",
+      "Cases.unassign_case",
+      "Cases.get_case_content",
+      "Cases.add_case_content",
+      "Cases.update_case_content",
+      "Cases.delete_case_content",
+      "Cases.download_case_content",
+      "Cases.add_case_image",
+      "Cases.case_analysis_credit_allocation",
+      "Cases.case_analysis",
+      "Cases.case_analysis_history",
+      "Operators.list_operators",
+      "Operators.get_operator",
+      "Operators.create_operator",
+      "Operators.update_operator",
+      "Operators.delete_operator",
+      "Operators.reset_operator_mfa",
+      "Operators.invalidate_operator_passphrase",
+      "Operators.generate_passphrase_reset_link",
+      "Operators.require_passphrase_reset_on_next_login",
+      "Operators.list_authentication_logs",
+      "Operators.get_tenant_region",
+      "Users.get_users",
+      "Users.create_user",
+      "Users.create_users_bulk",
+      "Users.import_users",
+      "Users.restore_user",
+      "Users.delete_user",
+      "Users.get_user_labels",
+      "Users.add_user_photo",
+      "Users.update_user_uris",
+      "Users.assign_labels",
+      "Users.unassign_labels",
+      "Users.assign_labels_admin",
+      "Users.unassign_labels_admin",
+      "Users.search_users",
+      "Users.get_user",
+      "Users.aggregate_users",
+      "Users.get_user_terms",
+      "Users.get_user_archive_config",
+      "Users.update_user_archive_config",
+      "Users.change_user_state",
+      "Users.get_user_agents",
+      "Users.get_user_photo",
+      "Users.get_user_uris_v2",
+      "Users.add_user_uri",
+      "Users.remove_user_uri",
+      "Users.bulk_assign_user_uris",
+      "Users.export_users_csv",
+      "Users.export_users_xlsx",
+      "Users.get_exportable_user_fields",
+      "Users.export_user_uris_csv",
+      "Policies.create_policies_groups",
+      "Policies.list_policies_groups",
+      "Policies.get_policy_group",
+      "Policies.update_policy_group",
+      "Policies.replace_policy_group",
+      "Policies.delete_policy_group",
+      "Policies.clone_policy_group",
+      "Policies.publish_policy_group",
+      "Policies.publish_policy_groups",
+      "Policies.test_policies_groups",
+      "Policies.assign_policy_group_label",
+      "Policies.unassign_policy_group_label",
+      "Policies.get_policy_group_labels",
+      "Policies.assign_policy_group_exclude_label",
+      "Policies.unassign_policy_group_exclude_label",
+      "Policies.create_policy",
+      "Policies.get_policy",
+      "Policies.update_policy",
+      "Policies.replace_policy",
+      "Policies.delete_policy",
+      "Policies.get_policy_defaults",
+      "Policies.assign_policy_exclude_label",
+      "Policies.unassign_policy_exclude_label",
+      "Policies.fetch_policies",
+      "Policies.search_policies",
+      "Policies.get_policy_terms",
+      "Policies.test_policies",
+      "Policies.export_policy_groups",
+      "Policies.list_policy_group_templates",
+      "Policies.list_policy_group_template_templates",
+      "Policies.list_policy_packs",
+      "Policies.get_policy_pack",
+      "Policies.delete_policy_pack",
+      "Policies.list_policy_pack_templates",
+      "Policies.get_policy_pack_template",
+      "Policies.upload_policy_packs",
+      "Policies.list_policies_data",
+      "Policies.create_policy_data",
+      "Policies.upload_policy_data",
+      "Policies.get_policy_data",
+      "Policies.update_policy_data",
+      "Policies.delete_policy_asset",
+      "Policies.download_policy_data",
+      "Policies.import_policy_groups",
+      "PoliciesData.list_policies_data",
+      "PoliciesData.create_policy_data",
+      "PoliciesData.upload_policy_data",
+      "PoliciesData.get_policy_data",
+      "PoliciesData.update_policy_data",
+      "PoliciesData.delete_policy_data",
+      "PoliciesData.download_policy_data",
+      "Incidents.search_incidents",
+      "Incidents.get_incident",
+      "Incidents.aggregate_incidents",
+      "Incidents.get_incident_terms",
+      "Incidents.count_incident_agents",
+      "Incidents.count_incident_users",
+      "Incidents.get_bounded_rule_entity_count",
+      "Incidents.update_status",
+      "Incidents.get_incident_agents",
+      "Incidents.get_incident_users",
+      "Incidents.get_incident_labels",
+      "SaaS.search_applications",
+      "SaaS.aggregate_applications",
+      "SaaS.get_application",
+      "SaaS.get_application_icon",
+      "SaaS.get_terms",
+      "SaaS.get_template_terms",
+      "SaaS.get_categories",
+      "SaaS.search_templates",
+      "SaaS.export_csv",
+      "SaaS.export_xlsx",
+      "SaaS.get_exportable_fields",
+      "SaaS.get_config",
+      "SaaS.update_config",
+      "SaaS.create_applications",
+      "SaaS.create_custom_application",
+      "SaaS.test_custom_application",
+      "SaaS.update_custom_application",
+      "SaaS.upload_custom_application_icon",
+      "SaaS.delete_custom_application_icon",
+      "SaaS.set_scores",
+      "SaaS.reset_scores",
+      "SaaS.set_verdict",
+      "SaaS.allow_domainless_login",
+      "SaaS.change_state",
+      "Agents.get_agents",
+      "Agents.get_agent",
+      "Agents.aggregate_agents",
+      "Agents.get_agent_terms",
+      "Agents.get_enrolled_count",
+      "Agents.update_status",
+      "Agents.revoke_agents",
+      "Agents.export_agents_csv",
+      "Agents.export_agents_xlsx",
+      "Agents.get_exportable_agent_fields",
+      "Agents.get_agent_archive_config",
+      "Agents.update_agent_archive_config",
+      "Agents.get_agent_components",
+      "Agents.get_agent_component_faults",
+      "Agents.get_agent_component_terms",
+      "Agents.suppress_components",
+      "Agents.unsuppress_components",
+      "Agents.get_agent_components_by_agent",
+      "Agents.suppress_components_by_agent",
+      "Agents.unsuppress_components_by_agent",
+      "Agents.get_agent_users",
+      "Agents.delete_archived_agents",
+      "Agents.assign_labels",
+      "Agents.unassign_labels",
+      "Agents.add_labels",
+      "Agents.remove_labels",
+      "Agents.get_agent_updates",
+      "Agents.download_agent_binary",
+      "Agents.create_agent_enrollment_bundle",
+      "Agents.get_agent_crashes",
+      "Agents.delete_agent_crashes",
+      "Agents.download_agent_crash",
+      "Agents.delete_agent_crash",
+      "Agents.get_agent_labels",
+      "Agents.get_agent_classifications",
+      "Agents.assign_agent_classification",
+      "Agents.remove_agent_classification",
+      "Agents.exclude_agent_classification",
+      "AgentConfigs.get_agent_configs",
+      "AgentConfigs.create_agent_config",
+      "AgentConfigs.get_agent_config",
+      "AgentConfigs.update_agent_config",
+      "AgentConfigs.delete_agent_config",
+      "AgentConfigs.export_agent_configs",
+      "AgentConfigs.import_agent_configs",
+      "AgentConfigs.test_agent_configs",
+      "AgentConfigs.get_agent_config_key",
+      "AgentConfigs.set_agent_config_key",
+      "AgentConfigs.delete_agent_config_key",
+      "AgentConfigs.get_agent_config_labels",
+      "AgentConfigs.assign_agent_config_labels",
+      "AgentConfigs.unassign_agent_config_labels",
+      "AgentEnrollment.get_bootstrap_token",
+      "AgentEnrollment.get_tokens",
+      "AgentEnrollment.create_token",
+      "AgentEnrollment.get_token",
+      "AgentEnrollment.update_token",
+      "AgentEnrollment.download_token_bundle",
+      "AgentEnrollment.revoke_token",
+      "Labels.create",
+      "Labels.get",
+      "Labels.update",
+      "Labels.delete",
+      "Labels.get_labels",
+      "Labels.get_label_terms",
+      "AccessTokens.get_access_tokens",
+      "AccessTokens.create_access_token",
+      "AccessTokens.get_access_token",
+      "AccessTokens.revoke_access_token",
+      "Admin.delete_login_banner_info",
+      "Admin.get_login_banner_info",
+      "Admin.update_login_banner_info",
+      "Admin.get_operator_sessions",
+      "Admin.revoke_operator_session",
+      "Admin.get_version",
+      "AgentActions.post_action",
+      "AgentActions.delete_active_actions",
+      "AgentActions.post_active_actions",
+      "AgentActions.get_available_actions",
+      "AgentActions.post_available_actions",
+      "AgentActions.delete_debug_bundle",
+      "AgentActions.get_debug_bundle",
+      "AgentActions.delete_performance_report",
+      "AgentActions.get_performance_report",
+      "AgentActions.delete_screenshot",
+      "AgentActions.get_screenshot",
+      "AgentActions.trigger_action",
+      "AgentActions.get_in_flight_actions",
+      "AgentActions.delete_action_content",
+      "AgentActions.get_action_content",
+      "AgentOfflineConfig.get_agent_offline_config",
+      "AgentOfflineConfig.update_agent_offline_config",
+      "Box.box_service_list_credentials",
+      "Box.box_service_create_credentials",
+      "Box.box_service_verify_credentials",
+      "Box.box_service_delete_credentials",
+      "Box.box_service_get_credentials",
+      "Box.box_service_update_credentials",
+      "Box.box_service_verify_saved_credentials",
+      "Box.list_saas_box_subscriptions",
+      "Box.create_saas_box_subscription",
+      "Box.cancel_saas_box_subscription",
+      "Box.get_saas_box_subscription",
+      "Box.update_saas_box_subscription",
+      "BoxDirectory.get_box_directory_configs",
+      "BoxDirectory.add_box_directory_config",
+      "BoxDirectory.delete_box_directory_config",
+      "BoxDirectory.get_box_directory_config",
+      "BoxDirectory.update_box_directory_config",
+      "BoxDirectory.sync_box_directory",
+      "BoxDirectory.sync_box_directory_groups",
+      "BoxDirectory.list_box_directory_groups",
+      "Classifications.get_classifications",
+      "Classifications.get_classification",
+      "CloudActions.get_available_cloud_actions",
+      "CloudActions.delete_cloud_message_platform_defaults",
+      "CloudActions.get_cloud_message_platform_defaults",
+      "CloudActions.update_cloud_message_platform_defaults",
+      "Dashboards.get_dashboards",
+      "Dashboards.create_dashboard",
+      "Dashboards.get_widget_templates",
+      "Dashboards.delete_dashboard",
+      "Dashboards.get_dashboard",
+      "Dashboards.update_dashboard",
+      "DriveLabelsScheduledSync.create_scheduled_sync_google_drive_labels",
+      "DriveLabelsScheduledSync.list_scheduled_sync_google_drive_labels",
+      "DriveLabelsScheduledSync.remove_scheduled_sync_google_drive_labels",
+      "DriveLabelsScheduledSync.get_scheduled_sync_google_drive_labels",
+      "DriveLabelsScheduledSync.update_scheduled_sync_google_drive_labels",
+      "DriveLabelsScheduledSync.create_scheduled_sync_information_protection_labels",
+      "DriveLabelsScheduledSync.list_scheduled_sync_information_protection_labels",
+      "DriveLabelsScheduledSync.remove_scheduled_sync_information_protection_labels",
+      "DriveLabelsScheduledSync.get_scheduled_sync_information_protection_labels",
+      "DriveLabelsScheduledSync.update_scheduled_sync_information_protection_labels",
+      "Emails.list_email_notifications",
+      "Emails.create_email_notification",
+      "Emails.email_verify_link_handler",
+      "Emails.delete_email_notification",
+      "Emails.get_email_notification",
+      "Emails.update_email_notification",
+      "Emails.verify_email_address",
+      "EntraID.get_entra_id_configs",
+      "EntraID.add_entra_id_config",
+      "EntraID.delete_entra_id_config",
+      "EntraID.get_entra_id_config",
+      "EntraID.update_entra_id_config",
+      "EntraID.sync_entra_id",
+      "EntraID.sync_entra_id_groups",
+      "EntraID.count_entra_id_users",
+      "EntraID.list_entra_id_groups",
+      "Events.get_event",
+      "Events.get_events",
+      "FileShadow.delete_file_shadow_storage_config",
+      "FileShadow.get_file_shadow_storage_config",
+      "FileShadow.put_file_shadow_storage_config",
+      "FileShadow.get_file_shadow_test_config",
+      "FileShadow.get_decryption_tool_versions",
+      "FileShadow.get_file_shadow_evidence",
+      "FileShadow.get_file_shadow_evidence_for_agent",
+      "FileShadow.get_file_shadow_recipients",
+      "FileShadow.delete_file_shadow_recipient",
+      "FileShadow.get_file_shadow_recipient",
+      "FileShadow.put_file_shadow_recipient",
+      "FileShadow.get_clipboard_forensic_evidence_for_agent",
+      "FileShadow.get_fileshadow_forensic_evidence_for_agent",
+      "FileShadow.get_screenshot_forensic_evidence_for_agent",
+      "GlobalOperators.delete_global_operator",
+      "GlobalOperators.get_global_operator",
+      "GlobalOperators.get_global_operators",
+      "GlobalOperators.global_operator_terms",
+      "Google.google_service_list_credentials",
+      "Google.google_service_create_credentials",
+      "Google.google_service_verify_credentials",
+      "Google.google_service_delete_credentials",
+      "Google.google_service_get_credentials",
+      "Google.google_service_update_credentials",
+      "Google.google_service_verify_saved_credentials",
+      "Google.list_saas_google_drive_subscriptions",
+      "Google.create_saas_google_drive_subscription",
+      "Google.list_google_drive_labels",
+      "Google.sync_google_drive_labels",
+      "Google.get_google_drive_label",
+      "Google.cancel_saas_google_drive_subscription",
+      "Google.get_saas_google_drive_subscription",
+      "Google.update_saas_google_drive_subscription",
+      "GoogleDirectory.get_google_directory_configs",
+      "GoogleDirectory.add_google_directory_config",
+      "GoogleDirectory.delete_google_directory_config",
+      "GoogleDirectory.get_google_directory_config",
+      "GoogleDirectory.update_google_directory_config",
+      "GoogleDirectory.sync_google_directory",
+      "GoogleDirectory.sync_google_directory_groups",
+      "GoogleDirectory.list_google_directory_groups",
+      "Indicators.get_indicators",
+      "Indicators.get_tactics",
+      "Indicators.get_techniques",
+      "Ldap.get_ldap_configs",
+      "Ldap.add_ldap_config",
+      "Ldap.delete_ldap_config",
+      "Ldap.get_ldap_config",
+      "Ldap.update_ldap_config",
+      "Ldap.get_ldap_sync_status",
+      "Ldap.update_ldap_sync_status",
+      "Ldap.get_ldap_sync_tool_versions",
+      "Ldap.sync_ldap",
+      "Locations.get_locations",
+      "Locations.add_location",
+      "Locations.query_locations",
+      "Locations.delete_location",
+      "Locations.get_location",
+      "Locations.update_location",
+      "Locations.get_subnets",
+      "Locations.add_subnet",
+      "Locations.delete_subnet",
+      "Locations.get_subnet",
+      "MFA.mfa_service_get_info",
+      "MFA.delete_totp",
+      "MFA.start_register_totp",
+      "MFA.finish_register_totp",
+      "MFA.start_register_webauthn",
+      "MFA.finish_register_webauthn",
+      "MFA.delete_webauthn",
+      "ManagedServiceReports.list_reports",
+      "ManagedServiceReports.download_report",
+      "Microsoft.microsoft_service_list_credentials",
+      "Microsoft.microsoft_service_create_credentials",
+      "Microsoft.microsoft_service_verify_credentials",
+      "Microsoft.microsoft_service_delete_credentials",
+      "Microsoft.microsoft_service_get_credentials",
+      "Microsoft.microsoft_service_update_credentials",
+      "Microsoft.microsoft_service_verify_saved_credentials",
+      "Microsoft.list_saas_microsoft_onedrive_subscriptions",
+      "Microsoft.create_saas_microsoft_onedrive_subscription",
+      "Microsoft.list_microsoft_information_protection_labels",
+      "Microsoft.sync_information_protection_labels",
+      "Microsoft.get_microsoft_information_protection_label",
+      "Microsoft.cancel_saas_microsoft_onedrive_subscription",
+      "Microsoft.get_saas_microsoft_onedrive_subscription",
+      "Microsoft.update_saas_microsoft_onedrive_subscription",
+      "Microsoft.set_teams_enabled",
+      "Microsoft.get_teams_enabled",
+      "Microsoft.teams_health",
+      "OperatorPreferences.reset_operator_preferences",
+      "OperatorPreferences.list_operator_preferences",
+      "OperatorPreferences.set_operator_preference",
+      "OperatorPreferences.delete_operator_preference",
+      "OperatorPreferences.get_operator_preference",
+      "Outlook.delete_certificate",
+      "Outlook.outlook_service_get_certificate",
+      "Outlook.renew_certificate",
+      "Passphrase.handle_forgotten_passphrase",
+      "Passphrase.set_passphrase",
+      "Passphrase.change_passphrase",
+      "Passphrase.passphrase_reset_link_handler",
+      "Passphrase.test_passphrase",
+      "Permissions.get_permissions",
+      "Perspectives.get_perspectives",
+      "Perspectives.create_perspective",
+      "Perspectives.delete_perspective",
+      "Perspectives.get_perspective",
+      "Quota.get_license",
+      "Quota.refresh_license_status",
+      "Quota.get_license_status",
+      "Roles.get_roles",
+      "Roles.create_role",
+      "Roles.delete_role",
+      "Roles.get_role",
+      "Roles.update_role",
+      "SAML.delete_config",
+      "SAML.get_config_2",
+      "SAML.edit_config",
+      "SAML.delete_crypto_keys",
+      "SAML.saml_service_get_certificate",
+      "SAML.create_crypto_keys",
+      "SAML.edit_crypto_keys",
+      "SAML.saml_service_get_info",
+      "SavedQueries.get_saved_queries",
+      "SavedQueries.create_saved_query",
+      "SavedQueries.delete_saved_query",
+      "SavedQueries.get_saved_query",
+      "SavedQueries.update_saved_query",
+      "ScopedInvestigations.list_scoped_investigations",
+      "ScopedInvestigations.assign_scoped_investigation",
+      "ScopedInvestigations.clear_active_scoped_investigation",
+      "ScopedInvestigations.scoped_investigation_aggregation",
+      "ScopedInvestigations.list_scoped_investigation_requests",
+      "ScopedInvestigations.request_scoped_investigation",
+      "ScopedInvestigations.scoped_investigation_request_aggregation",
+      "ScopedInvestigations.get_scoped_investigation_request",
+      "ScopedInvestigations.update_scoped_investigation_request",
+      "ScopedInvestigations.activate_scoped_investigation",
+      "ScopedInvestigations.cancel_scoped_investigation_request",
+      "ScopedInvestigations.get_scoped_investigation_terms",
+      "ScopedInvestigations.get_scoped_investigation",
+      "ScopedInvestigations.update_scoped_investigation",
+      "ScopedInvestigations.approve_scoped_investigation",
+      "ScopedInvestigations.revoke_scoped_investigation",
+      "Search.get_search_terms",
+      "SequenceDetection.list_bounded_definition_uuids",
+      "SequenceDetection.get_bounded_entity_count",
+      "SequenceDetection.list_definitions",
+      "SequenceDetection.create_definition",
+      "SequenceDetection.delete_definition",
+      "SequenceDetection.get_definition",
+      "SequenceDetection.update_definition",
+      "SequenceDetection.publish_definition",
+      "Siem.list_streams",
+      "Siem.create_stream",
+      "Siem.stream_health",
+      "Siem.delete_stream",
+      "Siem.get_stream",
+      "Siem.update_stream",
+      "Slack.delete_slack_auth",
+      "Slack.slack_auth",
+      "Slack.slack_health",
+      "Slack.slack_o_auth_url",
+      "StackFederation.create_enrollment_token",
+      "StackFederation.get_agent_routing_rules",
+      "StackFederation.set_agent_routing_rules",
+      "StackFederation.get_unrouted_agent_default",
+      "StackFederation.set_unrouted_agent_default",
+      "StackFederation.export_agent_routing_rules",
+      "StackFederation.import_agent_routing_rules",
+      "StackFederation.get_target_stack_by_labels",
+      "StackFederation.get_agent_routing_rule",
+      "StackFederation.stack_federation_service_revoke_enroll_token",
+      "SupportingOperators.list_supporting_operator_grants",
+      "SupportingOperators.revoke_supporting_operator_grant",
+      "SupportingOperators.get_supporting_operator_grant",
+      "SupportingOperators.list_supporting_operator_requests",
+      "SupportingOperators.deny_supporting_operator_request",
+      "SupportingOperators.get_supporting_operator_request",
+      "SupportingOperators.approve_supporting_operator_request",
+      "SupportingOperators.create_support_access",
+      "TenantPreferences.list_tenant_preferences",
+      "TenantPreferences.set_tenant_preference",
+      "TenantPreferences.delete_tenant_preference",
+      "TenantPreferences.get_tenant_preference",
+      "Tenants.get_tenant_forticloud_attributes",
+      "TimelineSearch.post_timeline_action_events_request",
+      "TimelineSearch.post_timeline_action_events_aggregation_request",
+      "TimelineSearch.post_timeline_count_action_events_request",
+      "TimelineSearch.post_timeline_actions_request",
+      "TimelineSearch.post_timeline_actions_aggregation_request",
+      "TimelineSearch.post_timeline_count_actions_request",
+      "TimelineSearch.timeline_activity_feed",
+      "TimelineSearch.post_timeline_incidents_request",
+      "TimelineSearch.post_timeline_incidents_aggregation_request",
+      "TimelineSearch.post_timeline_count_incidents_request",
+      "TimelineSearch.timeline_incident_event_scope",
+      "TimelineSearch.get_timeline_saved_searches",
+      "TimelineSearch.create_timeline_saved_search",
+      "TimelineSearch.delete_timeline_saved_search",
+      "TimelineSearch.get_timeline_saved_search",
+      "TimelineSearch.update_timeline_saved_search",
+      "TimelineSearch.get_timeline_event_streams",
+      "TimelineSearch.exportable_timeline_fields",
+      "TimelineSearch.get_timeline_event_by_id",
+      "TimelineSearch.post_timeline_request",
+      "TimelineSearch.post_timeline_aggregation_request",
+      "TimelineSearch.post_timeline_count_request",
+      "TimelineSearch.export_timeline_csv",
+      "TimelineSearch.export_timeline_xlsx",
+      "UsageStatistics.post_event_count_request",
+      "Webhooks.get_webhooks",
+      "Webhooks.create_webhook",
+      "Webhooks.validate_webhook_custom_payload",
+      "Webhooks.delete_webhook",
+      "Webhooks.get_webhook",
+      "Webhooks.update_webhook",
+      "Webhooks.test_webhook"
+    ],
+    "fortidlp/__init__.py": [],
+    "fortidlp/access_tokens.py": [
+      "AccessTokens.list",
+      "AccessTokens.create",
+      "AccessTokens.get",
+      "AccessTokens.delete"
+    ],
+    "fortidlp/action_events.py": [
+      "ActionEvents.list",
+      "ActionEvents.get"
+    ],
+    "fortidlp/admin.py": [
+      "Admin.delete_archived_agents",
+      "Admin.download_agent_binary",
+      "Admin.delete_all_agent_crash_reports",
+      "Admin.list_agent_crash_dumps",
+      "Admin.assign_labels_to_agents",
+      "Admin.unassign_labels_from_agents",
+      "Admin.get_available_agent_upgrade_versions",
+      "Admin.get_agent_classifications",
+      "Admin.remove_agent_classification",
+      "Admin.assign_classification_to_agent",
+      "Admin.exclude_classification_from_agent",
+      "Admin.delete_agent_crash_reports",
+      "Admin.list_agent_crash_events",
+      "Admin.download_agent_crash_report",
+      "Admin.get_agent_labels",
+      "Admin.delete_login_banner_configuration",
+      "Admin.get_login_banner_configuration",
+      "Admin.update_login_banner_configuration",
+      "Admin.list_operator_sessions",
+      "Admin.revoke_operator_session",
+      "Admin.create_user",
+      "Admin.bulk_create_users",
+      "Admin.import_users_from_csv",
+      "Admin.assign_labels_to_users",
+      "Admin.unassign_labels_from_users",
+      "Admin.restore_user",
+      "Admin.get_user_labels",
+      "Admin.add_user_photo",
+      "Admin.update_user_uris",
+      "Admin.delete_user_pii",
+      "Admin.get_stack_version"
+    ],
+    "fortidlp/agent_actions.py": [
+      "AgentActions.request_action",
+      "AgentActions.unset_active_actions",
+      "AgentActions.query_active_actions",
+      "AgentActions.list_available_action_types",
+      "AgentActions.query_supported_action_types",
+      "AgentActions.delete_debug_bundle",
+      "AgentActions.get_debug_bundle",
+      "AgentActions.delete_performance_report",
+      "AgentActions.get_performance_report",
+      "AgentActions.delete_screenshot",
+      "AgentActions.get_screenshot",
+      "AgentActions.trigger_action",
+      "AgentActions.list_in_flight_actions",
+      "AgentActions.delete_action_content",
+      "AgentActions.get_action_content"
+    ],
+    "fortidlp/agent_configs.py": [
+      "AgentConfigs.list_agent_configurations",
+      "AgentConfigs.create_agent_configuration",
+      "AgentConfigs.export_agent_configs",
+      "AgentConfigs.import_agent_configs",
+      "AgentConfigs.test_agent_configs",
+      "AgentConfigs.delete_agent_configuration",
+      "AgentConfigs.get_agent_configuration",
+      "AgentConfigs.update_agent_configuration",
+      "AgentConfigs.delete_agent_config_key",
+      "AgentConfigs.get_agent_config_key",
+      "AgentConfigs.add_or_update_agent_config_key",
+      "AgentConfigs.unassign_labels_from_agent_config",
+      "AgentConfigs.get_labels_assigned_to_agent_config",
+      "AgentConfigs.assign_labels_to_agent_config"
+    ],
+    "fortidlp/agent_enrollment.py": [
+      "AgentEnrollment.get_bootstrap_token",
+      "AgentEnrollment.get_agent_enrollment_tokens",
+      "AgentEnrollment.create_agent_enrollment_token",
+      "AgentEnrollment.get_agent_enrollment_token_by_id",
+      "AgentEnrollment.update_enroll_token_configuration",
+      "AgentEnrollment.download_enrollment_bundle",
+      "AgentEnrollment.revoke_enroll_token"
+    ],
+    "fortidlp/agent_groups.py": [
+      "AgentGroups.list",
+      "AgentGroups.create",
+      "AgentGroups.get",
+      "AgentGroups.update",
+      "AgentGroups.delete"
+    ],
+    "fortidlp/audit_logs.py": [
+      "AuditLogs.list",
+      "AuditLogs.get"
+    ],
+    "fortidlp/auth.py": [],
+    "fortidlp/authentication.py": [
+      "Authentication.login",
+      "Authentication.logout",
+      "Authentication.refresh_token",
+      "Authentication.get_current_user",
+      "Authentication.get_users",
+      "Authentication.create_user",
+      "Authentication.get_user_by_id",
+      "Authentication.update_user",
+      "Authentication.delete_user"
+    ],
+    "fortidlp/cases.py": [
+      "Cases.get_cases",
+      "Cases.create_case",
+      "Cases.delete_case",
+      "Cases.get_case_by_id",
+      "Cases.update_case",
+      "Cases.assign_case",
+      "Cases.get_case_content",
+      "Cases.add_case_content",
+      "Cases.delete_case_content",
+      "Cases.update_case_content",
+      "Cases.get_case_content_image",
+      "Cases.add_case_image",
+      "Cases.unassign_case"
+    ],
+    "fortidlp/classifications.py": [
+      "Classifications.get_all_classifications",
+      "Classifications.get_classification_by_id"
+    ],
+    "fortidlp/connector.py": [],
+    "fortidlp/dashboard_service.py": [
+      "DashboardService.get_dashboards",
+      "DashboardService.create_dashboard",
+      "DashboardService.get_dashboard_templates",
+      "DashboardService.delete_dashboard",
+      "DashboardService.get_dashboard_by_uuid",
+      "DashboardService.update_dashboard"
+    ],
+    "fortidlp/drive_labels_scheduled_sync.py": [
+      "DriveLabelsScheduledSync.schedule_google_drive_labels_sync",
+      "DriveLabelsScheduledSync.list_google_drive_labels_sync_schedules",
+      "DriveLabelsScheduledSync.delete_google_drive_labels_sync_schedule",
+      "DriveLabelsScheduledSync.get_google_drive_labels_sync_schedule",
+      "DriveLabelsScheduledSync.update_google_drive_labels_sync_schedule",
+      "DriveLabelsScheduledSync.schedule_microsoft_onedrive_labels_sync",
+      "DriveLabelsScheduledSync.list_microsoft_onedrive_labels_sync_schedules",
+      "DriveLabelsScheduledSync.delete_microsoft_onedrive_labels_sync_schedule",
+      "DriveLabelsScheduledSync.get_microsoft_onedrive_labels_sync_schedule",
+      "DriveLabelsScheduledSync.update_microsoft_onedrive_labels_sync_schedule"
+    ],
+    "fortidlp/emails.py": [
+      "Emails.list_all_email_notifications",
+      "Emails.register_new_email_notification",
+      "Emails.verify_emails",
+      "Emails.delete_email_notification",
+      "Emails.retrieve_email_notification_configuration",
+      "Emails.update_email_notification_configuration",
+      "Emails.send_verification_email"
+    ],
+    "fortidlp/entities_search.py": [
+      "EntitiesSearch.aggregate_agents",
+      "EntitiesSearch.get_agent_archive_config",
+      "EntitiesSearch.update_agent_archive_config",
+      "EntitiesSearch.get_agent_components",
+      "EntitiesSearch.get_agent_components_faults",
+      "EntitiesSearch.suppress_agent_components",
+      "EntitiesSearch.get_agent_components_terms",
+      "EntitiesSearch.unsuppress_agent_components",
+      "EntitiesSearch.export_agents_csv",
+      "EntitiesSearch.get_agent_export_fields",
+      "EntitiesSearch.export_agents_xlsx",
+      "EntitiesSearch.add_labels_to_agents",
+      "EntitiesSearch.remove_labels_from_agents",
+      "EntitiesSearch.revoke_agent_licenses",
+      "EntitiesSearch.search_agents",
+      "EntitiesSearch.change_agent_state",
+      "EntitiesSearch.get_agent_terms",
+      "EntitiesSearch.get_target_agent",
+      "EntitiesSearch.get_agent_components_health",
+      "EntitiesSearch.suppress_agent_components_by_uuid",
+      "EntitiesSearch.unsuppress_agent_components_by_uuid",
+      "EntitiesSearch.search_agent_users",
+      "EntitiesSearch.aggregate_users",
+      "EntitiesSearch.get_user_archive_config",
+      "EntitiesSearch.update_user_archive_config",
+      "EntitiesSearch.bulk_assign_user_uris",
+      "EntitiesSearch.export_users_csv",
+      "EntitiesSearch.get_user_export_fields",
+      "EntitiesSearch.export_users_xlsx",
+      "EntitiesSearch.add_labels_to_users",
+      "EntitiesSearch.remove_labels_from_users",
+      "EntitiesSearch.search_users",
+      "EntitiesSearch.change_user_state",
+      "EntitiesSearch.get_user_terms",
+      "EntitiesSearch.export_user_uris_csv",
+      "EntitiesSearch.get_single_user",
+      "EntitiesSearch.search_user_agents",
+      "EntitiesSearch.get_user_photo",
+      "EntitiesSearch.get_user_uris",
+      "EntitiesSearch.add_user_uri",
+      "EntitiesSearch.remove_user_uri"
+    ],
+    "fortidlp/entra_id.py": [
+      "EntraID.get_entra_id_configs",
+      "EntraID.create_entra_id_config",
+      "EntraID.delete_entra_id_config",
+      "EntraID.get_entra_id_config",
+      "EntraID.update_entra_id_config",
+      "EntraID.sync_entra_id_config",
+      "EntraID.sync_entra_id_groups",
+      "EntraID.get_entra_id_user_count",
+      "EntraID.get_entra_id_groups"
+    ],
+    "fortidlp/file_shadow.py": [
+      "FileShadow.delete_file_shadow_config",
+      "FileShadow.get_file_shadow_config",
+      "FileShadow.update_file_shadow_config",
+      "FileShadow.test_file_shadow_config",
+      "FileShadow.get_file_shadow_decryption_tool",
+      "FileShadow.get_file_shadow_evidence_by_action_uuid",
+      "FileShadow.get_file_shadow_evidence_by_agent_action_uuid",
+      "FileShadow.get_file_shadow_recipients",
+      "FileShadow.delete_file_shadow_recipient",
+      "FileShadow.get_file_shadow_recipient",
+      "FileShadow.update_file_shadow_recipient",
+      "FileShadow.get_clipboard_evidence",
+      "FileShadow.get_file_shadow_forensic_evidence",
+      "FileShadow.get_screenshot_evidence"
+    ],
+    "fortidlp/global_operators.py": [
+      "GlobalOperators.delete_global_operator",
+      "GlobalOperators.get_global_operator",
+      "GlobalOperators.search_global_operators",
+      "GlobalOperators.get_global_operators_terms"
+    ],
+    "fortidlp/google.py": [
+      "Google.get_google_credentials",
+      "Google.create_google_credentials",
+      "Google.verify_google_credentials",
+      "Google.delete_google_credentials",
+      "Google.get_google_credentials_by_uuid",
+      "Google.update_google_credentials",
+      "Google.get_google_drive_files",
+      "Google.create_google_drive_file",
+      "Google.get_google_drive_labels",
+      "Google.sync_google_drive_labels",
+      "Google.get_google_drive_label_by_id",
+      "Google.delete_google_drive_file",
+      "Google.get_google_drive_file_by_id",
+      "Google.update_google_drive_file"
+    ],
+    "fortidlp/google_directory.py": [
+      "GoogleDirectory.get_google_directory_configs",
+      "GoogleDirectory.create_google_directory_config",
+      "GoogleDirectory.delete_google_directory_config",
+      "GoogleDirectory.get_google_directory_config",
+      "GoogleDirectory.update_google_directory_config",
+      "GoogleDirectory.sync_google_directory_config",
+      "GoogleDirectory.sync_google_directory_groups",
+      "GoogleDirectory.get_google_directory_groups"
+    ],
+    "fortidlp/incidents.py": [
+      "Incidents.count_agents_in_incidents",
+      "Incidents.aggregate_incidents",
+      "Incidents.get_bounded_rule_entity_count",
+      "Incidents.search_incidents",
+      "Incidents.set_incident_status",
+      "Incidents.get_incident_terms",
+      "Incidents.count_users_in_incidents",
+      "Incidents.get_single_incident",
+      "Incidents.search_incident_agents",
+      "Incidents.search_incident_labels",
+      "Incidents.search_incident_users"
+    ],
+    "fortidlp/labels.py": [
+      "Labels.create_label",
+      "Labels.search_labels",
+      "Labels.delete_label_by_id",
+      "Labels.get_label_by_id",
+      "Labels.update_label"
+    ],
+    "fortidlp/ldap.py": [
+      "Ldap.get_ldap_configs",
+      "Ldap.create_ldap_config",
+      "Ldap.delete_ldap_config",
+      "Ldap.get_ldap_config",
+      "Ldap.update_ldap_config",
+      "Ldap.get_ldap_sync_status",
+      "Ldap.update_ldap_sync_status",
+      "Ldap.get_ldap_sync_tool_versions",
+      "Ldap.perform_ldap_sync"
+    ],
+    "fortidlp/locations.py": [
+      "Locations.get_locations",
+      "Locations.create_location",
+      "Locations.query_locations",
+      "Locations.delete_location",
+      "Locations.get_location_by_id",
+      "Locations.update_location",
+      "Locations.get_location_subnets",
+      "Locations.create_location_subnet",
+      "Locations.delete_location_subnet",
+      "Locations.get_location_subnet_by_id"
+    ],
+    "fortidlp/microsoft.py": [
+      "Microsoft.get_microsoft_credentials",
+      "Microsoft.create_microsoft_credentials",
+      "Microsoft.verify_microsoft_credentials",
+      "Microsoft.delete_microsoft_credentials",
+      "Microsoft.get_microsoft_credentials_by_uuid",
+      "Microsoft.update_microsoft_credentials",
+      "Microsoft.get_microsoft_onedrive_files",
+      "Microsoft.create_microsoft_onedrive_file",
+      "Microsoft.get_microsoft_onedrive_labels",
+      "Microsoft.sync_microsoft_onedrive_labels",
+      "Microsoft.get_microsoft_onedrive_label_by_id",
+      "Microsoft.delete_microsoft_onedrive_file",
+      "Microsoft.get_microsoft_onedrive_file_by_id",
+      "Microsoft.update_microsoft_onedrive_file"
+    ],
+    "fortidlp/ml.py": [
+      "ML.get_agent_offline_config",
+      "ML.update_agent_offline_config"
+    ],
+    "fortidlp/operators.py": [
+      "Operators.get_authentication_log",
+      "Operators.get_operators",
+      "Operators.add_operator",
+      "Operators.delete_operator",
+      "Operators.get_operator",
+      "Operators.update_operator",
+      "Operators.reset_mfa_authentication"
+    ],
+    "fortidlp/outlook.py": [
+      "Outlook.delete_outlook_certificate",
+      "Outlook.get_outlook_certificate",
+      "Outlook.upload_outlook_certificate"
+    ],
+    "fortidlp/passphrase.py": [
+      "Passphrase.get_forgotten_passphrase",
+      "Passphrase.invalidate_operator_passphrase",
+      "Passphrase.generate_passphrase_reset_link",
+      "Passphrase.prompt_passphrase_reset_on_next_login",
+      "Passphrase.set_passphrase",
+      "Passphrase.change_passphrase",
+      "Passphrase.get_passphrase_reset_info",
+      "Passphrase.test_passphrase"
+    ],
+    "fortidlp/perspectives.py": [
+      "Perspectives.get_all_perspectives",
+      "Perspectives.create_perspective",
+      "Perspectives.delete_perspective_by_id",
+      "Perspectives.get_perspective_by_id"
+    ],
+    "fortidlp/policies.py": [
+      "Policies.get_all_data_objects",
+      "Policies.create_data_object",
+      "Policies.upload_data_object_blob",
+      "Policies.delete_data_object_by_id",
+      "Policies.get_data_object_by_id",
+      "Policies.update_data_object",
+      "Policies.download_data_object",
+      "Policies.export_policy_groups",
+      "Policies.fetch_all_group_templates",
+      "Policies.fetch_policy_templates_by_group_template_id",
+      "Policies.fetch_all_policy_groups",
+      "Policies.create_policy_group",
+      "Policies.publish_policy_groups",
+      "Policies.test_policy_groups",
+      "Policies.create_policy_within_group",
+      "Policies.fetch_policy",
+      "Policies.update_partial_policy",
+      "Policies.update_complete_policy",
+      "Policies.get_policy_defaults",
+      "Policies.delete_policy",
+      "Policies.delete_policy_group",
+      "Policies.get_policy_group",
+      "Policies.update_partial_policy_group",
+      "Policies.update_complete_policy_group",
+      "Policies.clone_policy_group",
+      "Policies.unassign_exclude_label_from_agent_policy_group",
+      "Policies.assign_exclude_label_to_agent_policy_group",
+      "Policies.get_policy_group_labels",
+      "Policies.unassign_label_from_agent_policy_group",
+      "Policies.assign_label_to_agent_policy_group",
+      "Policies.publish_policy_group",
+      "Policies.import_agent_policy_groups",
+      "Policies.fetch_all_policy_packs",
+      "Policies.upload_all_policy_packs",
+      "Policies.delete_policy_pack",
+      "Policies.fetch_policy_pack",
+      "Policies.fetch_policy_templates_by_policy_pack_id",
+      "Policies.fetch_policy_template",
+      "Policies.search_policies"
+    ],
+    "fortidlp/quota.py": [
+      "Quota.get_license_status"
+    ],
+    "fortidlp/roles.py": [
+      "Roles.get_roles",
+      "Roles.create_role",
+      "Roles.delete_role",
+      "Roles.get_role",
+      "Roles.update_role"
+    ],
+    "fortidlp/saas_applications.py": [
+      "SaaSApplications.aggregate_saas_applications",
+      "SaaSApplications.allow_domainless_login",
+      "SaaSApplications.list_saas_application_categories",
+      "SaaSApplications.get_saas_application_config",
+      "SaaSApplications.update_saas_application_config",
+      "SaaSApplications.create_saas_application_entries",
+      "SaaSApplications.create_custom_saas_application",
+      "SaaSApplications.test_url_matching",
+      "SaaSApplications.update_custom_saas_application",
+      "SaaSApplications.delete_saas_application_icon",
+      "SaaSApplications.update_saas_application_icon",
+      "SaaSApplications.export_saas_applications_csv",
+      "SaaSApplications.get_saas_application_export_fields",
+      "SaaSApplications.export_saas_applications_xlsx",
+      "SaaSApplications.override_saas_application_scores",
+      "SaaSApplications.reset_saas_application_scores",
+      "SaaSApplications.search_saas_applications",
+      "SaaSApplications.change_saas_application_state",
+      "SaaSApplications.search_saas_application_templates",
+      "SaaSApplications.get_saas_application_templates_terms",
+      "SaaSApplications.get_saas_application_terms",
+      "SaaSApplications.change_saas_application_verdict",
+      "SaaSApplications.get_single_saas_application",
+      "SaaSApplications.get_saas_application_icon"
+    ],
+    "fortidlp/saml.py": [
+      "SAML.delete_saml_config",
+      "SAML.get_saml_config",
+      "SAML.edit_saml_config",
+      "SAML.delete_cryptographic_keys",
+      "SAML.get_saml_certificate",
+      "SAML.generate_cryptographic_keys",
+      "SAML.upload_cryptographic_keys",
+      "SAML.get_saml_info"
+    ],
+    "fortidlp/saved_queries.py": [
+      "SavedQueries.list_saved_queries",
+      "SavedQueries.create_saved_query",
+      "SavedQueries.delete_saved_query",
+      "SavedQueries.get_saved_query_by_uuid",
+      "SavedQueries.update_saved_query"
+    ],
+    "fortidlp/scoped_investigations.py": [
+      "ScopedInvestigations.get_scoped_investigations",
+      "ScopedInvestigations.assign_scoped_investigation",
+      "ScopedInvestigations.deactivate_active_scoped_investigation",
+      "ScopedInvestigations.aggregate_scoped_investigations",
+      "ScopedInvestigations.get_scoped_investigation_requests",
+      "ScopedInvestigations.request_scoped_investigation",
+      "ScopedInvestigations.aggregate_scoped_investigation_requests",
+      "ScopedInvestigations.get_scoped_investigation_request_details",
+      "ScopedInvestigations.update_scoped_investigation_request",
+      "ScopedInvestigations.activate_scoped_investigation",
+      "ScopedInvestigations.cancel_scoped_investigation_request",
+      "ScopedInvestigations.get_scoped_investigation_terms",
+      "ScopedInvestigations.get_scoped_investigation_details",
+      "ScopedInvestigations.update_scoped_investigation",
+      "ScopedInvestigations.approve_scoped_investigation",
+      "ScopedInvestigations.revoke_scoped_investigation_access"
+    ],
+    "fortidlp/search.py": [
+      "Search.get_search_terms"
+    ],
+    "fortidlp/sequence_detection.py": [
+      "SequenceDetection.get_bounded_definitions",
+      "SequenceDetection.get_bounded_definitions_entity_count",
+      "SequenceDetection.get_definitions",
+      "SequenceDetection.create_definition",
+      "SequenceDetection.delete_definition",
+      "SequenceDetection.get_definition",
+      "SequenceDetection.update_definition",
+      "SequenceDetection.publish_definition"
+    ],
+    "fortidlp/siem.py": [
+      "Siem.list_siem_streams"
+    ]
+  }
+}
